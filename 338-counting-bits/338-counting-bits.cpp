@@ -13,7 +13,7 @@ public:
         if(dp.find(n)!=dp.end()){
             return dp[n];
         }
-        return dp[n] = count1s(n>>1) + (n%2);
+        return dp[n] = count1s(n>>1) + (n&1);
     }
     
     vector<int> countBits(int n) {
