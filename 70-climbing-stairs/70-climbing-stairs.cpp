@@ -1,19 +1,28 @@
 class Solution {
 public:
-    unordered_map<int,int> dp;
-    int count(int n){
-        if(n==0){
-            return 1;
+        // vector<int> count(n+1,0);
+        // count[0] = 1;
+        // count[1] = 1;
+        // for(int i=2;i<=n;i++){
+        //     count[i] = count[i-1] + count[i-2];
+        // }
+        // return count[n];
+        int dp[46];
+        int solve(int n){
+            if(n<0){
+                return 0;
+            }
+            if(n==0){
+                return 1;
+            }
+            if(dp[n]!=-1){
+                return dp[n];
+            }
+            return dp[n]=solve(n-1) + solve(n-2);        
         }
-        else if(n<0){
-            return 0;
+        
+        int climbStairs(int n) {
+            memset(dp,-1,sizeof(dp));
+            return solve(n);
         }
-        else if(dp.find(n)!=dp.end()){
-            return dp[n];
-        }
-        return dp[n] = count(n-1) + count(n-2);
-    }
-    int climbStairs(int n) {
-        return count(n);
-    }
 };
