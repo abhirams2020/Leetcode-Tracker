@@ -10,11 +10,10 @@ public:
         if(n==1){
             return 1;
         }
-        // if(dp.find(n)!=dp.end()){
-        //     return dp[n];
-        // }
-        // return dp[n] = count1s(n>>1) + (n&1)?1:0;
-        return count1s(n>>1) + n%2;
+        if(dp.find(n)!=dp.end()){
+            return dp[n];
+        }
+        return dp[n] = count1s(n>>1) + (n%2);
     }
     
     vector<int> countBits(int n) {
