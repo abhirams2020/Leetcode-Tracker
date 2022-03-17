@@ -25,9 +25,8 @@ public:
             return letters[0];
         }
         int l=0,r=size-1;
-        int mid;
         while(l<r){
-            mid = l + (r-l)/2;
+            int mid = l + (r-l)/2;
             if(letters[mid] <= target){
                 l = mid+1;
             }
