@@ -24,7 +24,6 @@ public:
         if(target<letters[0] || target>=letters[letters.size()-1]){
             return letters[0];
         }
-        char minchar;
         int l=0,r=size-1;
         int mid;
         while(l<r){
@@ -33,11 +32,10 @@ public:
                 l = mid+1;
             }
             else {
-                minchar = letters[mid];
+                // r can be next greatest so min-1 not possible
                 r = mid;
             }
         }
-        cout<<l<<" "<<mid<<" "<<r<<endl;
         return letters[r];
     }
 };
