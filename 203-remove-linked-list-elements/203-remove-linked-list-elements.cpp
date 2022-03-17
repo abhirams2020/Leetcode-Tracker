@@ -14,9 +14,9 @@ public:
         if(!head){
             return head;
         }
-        ListNode* start=new ListNode(0), *curr=head;
-        start->next = curr;
-        ListNode* prev = start;
+        ListNode* dummy=new ListNode(0), *curr=head;
+        dummy->next = curr;
+        ListNode* prev = dummy;
         while(curr){
             if(curr->val == val){
                 prev->next = curr->next;
@@ -29,6 +29,6 @@ public:
             }
 
         }
-        return start->next;
+        return dummy->next;
     }
 };
