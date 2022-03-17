@@ -21,7 +21,7 @@ public:
 
     char nextGreatestLetter(vector<char>& letters, char target) {
         int size = letters.size();
-        if(target<letters[0] || target>=letters[letters.size()-1]){
+        if(target<letters[0] || target>=letters[size-1]){
             return letters[0];
         }
         int l=0,r=size-1;
