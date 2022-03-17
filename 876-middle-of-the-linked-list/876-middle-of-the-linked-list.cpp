@@ -11,6 +11,9 @@
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
+        if(!head){
+            return head;
+        }
         ListNode* slow = head, *fast = head;
         while(fast && fast->next){
             slow = slow->next;
