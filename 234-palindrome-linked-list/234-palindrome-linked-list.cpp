@@ -51,17 +51,13 @@ public:
             return true;
         }
         ListNode *slow = head, *fast = head;
-        ListNode* beforeMid = new ListNode(0);
-        beforeMid->next = slow;
         while(fast && fast->next){
-            beforeMid = beforeMid->next;
             slow = slow->next;
             fast = fast->next->next;
         }
-        beforeMid->next = NULL;
-        ListNode *mid = slow;
-        ListNode *midhead = reverseLL(mid);
-        while(midhead && head){
+        ListNode* midhead = slow;
+        midhead = reverseLL(midhead);
+        while(midhead && head && head!=slow){
             if(midhead->val != head->val){
                 return false;
             }
