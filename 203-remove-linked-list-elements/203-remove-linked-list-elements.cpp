@@ -21,14 +21,16 @@ public:
             if(curr->val == val){
                 cout<<"yes"<<endl;
                 prev->next = curr->next;
-                // ListNode* temp=curr;
-                // delete temp;
+                ListNode* temp=curr;
+                delete temp;
                 curr = prev->next;
-                continue;
             }
-            prev = prev->next;
-            if(curr)
-                curr = curr->next;
+            else{
+                prev = prev->next;
+                if(curr)
+                    curr = curr->next;                
+            }
+
         }
         return start->next;
     }
