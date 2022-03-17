@@ -19,7 +19,6 @@ public:
         ListNode* prev = start;
         while(curr){
             if(curr->val == val){
-                cout<<"yes"<<endl;
                 prev->next = curr->next;
                 ListNode* temp=curr;
                 delete temp;
