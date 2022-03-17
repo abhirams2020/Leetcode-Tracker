@@ -20,8 +20,6 @@ public:
         while(curr){
             if(curr->val == val){
                 prev->next = curr->next;
-                ListNode* temp=curr;
-                delete temp;
                 curr = prev->next;
             }
             else{
