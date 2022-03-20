@@ -20,8 +20,9 @@ public:
     int diameterOfBinaryTree(TreeNode* root) {
         if(!root)
             return 0;
+        // The length of a path between two nodes is represented by the number of edges between them.
         int currDiameter = maxDepth(root->left) + maxDepth(root->right);
-        int altDiameter = max(diameterOfBinaryTree(root->left), diameterOfBinaryTree(root->right));
-        return max(currDiameter, altDiameter);
+        int childDiameter = max(diameterOfBinaryTree(root->left), diameterOfBinaryTree(root->right));
+        return max(currDiameter, childDiameter);
     }
 };
