@@ -15,6 +15,9 @@ public:
         if(!root){
             return NULL;
         }
+        
+        // node -> left -> val < node -> val < node -> right -> val
+        
         if(root->val > p->val && root->val > q->val){
             return lowestCommonAncestor(root->left, p, q);
         }
