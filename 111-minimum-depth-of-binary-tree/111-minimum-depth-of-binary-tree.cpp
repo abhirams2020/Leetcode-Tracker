@@ -24,6 +24,6 @@ public:
         if(root->right){
             return 1+minDepth(root->right);
         }
-        return 1;
+        return 1; // if root->left and root->right NULL
     }
 };
