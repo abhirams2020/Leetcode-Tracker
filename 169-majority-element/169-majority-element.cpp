@@ -7,10 +7,10 @@ public:
                 ans = i;
             }
             if(ans == i){
-                count+=1;
+                count++;
             }
             else {
-                count-=1;
+                count--;
             }
         }
         return ans;
