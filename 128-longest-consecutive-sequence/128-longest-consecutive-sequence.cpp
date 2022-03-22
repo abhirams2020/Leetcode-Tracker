@@ -29,11 +29,11 @@ public:
         for(auto i:nums){
             s.insert(i);
         }
-        int count = 1, maxcount = 1;
+        int maxcount = 1;
         while(!s.empty()){
             int val = *s.begin();
             s.erase(val);
-            count = 1;
+            int count = 1;
             
             // val, val+1, val+2 ...
             for(int i=val+1;s.count(i);i++){
