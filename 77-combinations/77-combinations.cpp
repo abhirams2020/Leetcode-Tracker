@@ -7,17 +7,22 @@ public:
             res.push_back(op);
             return;
         }
+        if(n-curr+1<k-op.size()){
+            cout<<curr<<" "<<op.size()<<endl;
+            return;
+        }
         if(curr>n){
             return;
         }
-        for(int i=curr;i<=n;i++){
-            op.push_back(i);
-            solve(n, i+1, k, op);
-            op.pop_back();
-        }
-        // solve(n, curr+1, k, op);
-        // op.push_back(curr);
-        // solve(n, curr+1, k, op);
+        
+        // for(int i=curr;i<=n;i++){
+        //     op.push_back(i);
+        //     solve(n, i+1, k, op);
+        //     op.pop_back();
+        // }
+        solve(n, curr+1, k, op);
+        op.push_back(curr);
+        solve(n, curr+1, k, op);
     }
     vector<vector<int>> combine(int n, int k) {
         vector<int> op;
