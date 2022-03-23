@@ -7,9 +7,9 @@ public:
             res.push_back(op);
             return;
         }
-        if(n-curr+1<k-op.size()){
-            return;
-        }
+        // if(n-curr+1<k-op.size()){
+        //     return;
+        // }
         if(curr>n){
             return;
         }
