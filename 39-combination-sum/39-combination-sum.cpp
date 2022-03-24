@@ -45,9 +45,6 @@ public:
             solve(candidates,i,op,target-candidates[i]);
             op.pop_back();
         }
-        // else{
-        //     solve(candidates,index+1,op,target);
-        // }
     }
     
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
