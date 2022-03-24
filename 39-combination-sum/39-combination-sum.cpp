@@ -7,7 +7,7 @@ public:
             res.push_back(op);
             return;
         }
-        if(target<0 || index==candidates.size()){
+        if(index==candidates.size()){
             return;
         }
         if(candidates[index] <= target){
@@ -15,13 +15,14 @@ public:
             op.push_back(candidates[index]);
             solve(candidates,index,op,target-candidates[index]);
         }
-        else{
-            solve(candidates,index+1,op,target);
-        }
+        // else{
+        //     solve(candidates,index+1,op,target);
+        // }
     }
     
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<int> op;
+        sort(candidates.begin(),candidates.end());
         solve(candidates,0,op,target);
         return res;
     }
