@@ -1,7 +1,7 @@
 class Solution {
 public:
     
-    int dp[21][3000];
+    int dp[21][2000];
     
     int solve(vector<int> &nums, int sum, int target, int index){
         if(sum == target and index == nums.size()){
@@ -10,10 +10,10 @@ public:
         if(index == nums.size()){
             return 0;
         }
-        if(dp[index][2000+sum]!=-1){
-            return dp[index][2000+sum];
+        if(dp[index][1000+sum]!=-1){
+            return dp[index][1000+sum];
         }
-        return dp[index][2000+sum] = solve(nums,sum-nums[index],target,index+1) + solve(nums,sum+nums[index],target,index+1);
+        return dp[index][1000+sum] = solve(nums,sum-nums[index],target,index+1) + solve(nums,sum+nums[index],target,index+1);
     }
     
     int findTargetSumWays(vector<int>& nums, int target) {
