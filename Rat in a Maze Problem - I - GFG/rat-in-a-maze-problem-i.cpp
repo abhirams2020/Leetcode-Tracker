@@ -25,18 +25,10 @@ class Solution{
             return;
         }
         m[row][col] = 0;
-        op.push_back('D');
-        solve(m,row+1,col,size,op);
-        op.pop_back();
-        op.push_back('U');
-        solve(m,row-1,col,size,op);
-        op.pop_back();
-        op.push_back('R');
-        solve(m,row,col+1,size,op);
-        op.pop_back();
-        op.push_back('L');
-        solve(m,row,col-1,size,op);
-        op.pop_back();
+        solve(m,row+1,col,size,op+'D');
+        solve(m,row-1,col,size,op+'U');
+        solve(m,row,col+1,size,op+'R');
+        solve(m,row,col-1,size,op+'L');
         m[row][col] = 1;
     }
     vector<string> findPath(vector<vector<int>> &m, int n) {
