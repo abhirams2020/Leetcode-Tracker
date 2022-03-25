@@ -9,6 +9,7 @@ public:
                 res.push_back(op);
             return;
         }
+        // if count>0, only then add )
         solve(n-1,count+1,op+'(');
         if(count){
             solve(n-1,count-1,op+')');
