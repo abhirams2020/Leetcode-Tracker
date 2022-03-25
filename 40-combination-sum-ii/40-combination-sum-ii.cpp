@@ -1,38 +1,3 @@
-// class Solution {
-// public:
-//     vector<vector<int>> res;
-//     set<vector<int>> s;
-    
-//     void solve(vector<int> &candidates, int index, vector<int> op, int target){
-//         if(target==0){
-//             if(s.count(op)==0)
-//                 s.insert(op);
-//             return;
-//         }
-//         if(index==candidates.size()){
-//             return;
-//         }
-//         if(candidates[index] <= target){
-//             solve(candidates,index+1,op,target);
-//             op.push_back(candidates[index]);
-//             solve(candidates,index+1,op,target-candidates[index]);
-//         }
-//         // else{
-//         //     solve(candidates,index+1,op,target);
-//         // }
-//     }
-    
-//     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-//         vector<int> op;
-//         sort(candidates.begin(),candidates.end());
-//         solve(candidates,0,op,target);
-//         for(auto i:s){
-//             res.push_back(i);
-//         }
-//         return res;
-//     }
-// };
-
 class Solution {
 public:
     void helper(int index, int target, vector<int>&candidates, vector<vector<int>>&ans, vector<int> &ds){
