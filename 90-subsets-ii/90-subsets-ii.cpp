@@ -1,13 +1,14 @@
 class Solution {
 public:
     void solve(vector<int> &nums,vector<int> op,int index,set<vector<int>> &res){
-        if(index==nums.size()){
-            res.insert(op);
-            return;
+        res.insert(op);
+        for(int i=index;i<nums.size();i++){
+            if(i==index || nums[i]!=nums[i-1]){
+                op.push_back(nums[i]);
+                solve(nums,op,i+1,res);
+                op.pop_back();                 
+            }
         }
-        solve(nums,op,index+1,res);
-        op.push_back(nums[index]);
-        solve(nums,op,index+1,res);
     }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
         set<vector<int>> res;
