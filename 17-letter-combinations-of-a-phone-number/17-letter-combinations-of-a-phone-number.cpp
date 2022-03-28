@@ -3,16 +3,16 @@ public:
 
     
     vector<string> ans;
-    
-    void solve(string& digits,unordered_map<char,string> &mp, int index, string& op){
+    vector<string> mp = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+    void solve(string& digits, int index, string& op){
         if(index==digits.size()){
             if(op!="")
                 ans.push_back(op);
             return;
         }
-        for(int i=0;i<mp[digits[index]].length();i++){
-            op.push_back(mp[digits[index]][i]);
-            solve(digits,mp,index+1,op);
+        for(int i=0;i<mp[(digits[index])-'0'].length();i++){
+            op.push_back(mp[(digits[index])-'0'][i]);
+            solve(digits,index+1,op);
             op.pop_back();
         }
     }
@@ -28,7 +28,7 @@ public:
         mp['8'] = "tuv";
         mp['9'] = "wxyz";
         string op = "";
-        solve(digits,mp,0,op);
+        solve(digits,0,op);
         return ans;
     }
 };
