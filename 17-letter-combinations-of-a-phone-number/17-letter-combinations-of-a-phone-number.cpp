@@ -11,11 +11,9 @@ public:
             return;
         }
         for(int i=0;i<mp[digits[index]].length();i++){
-            // if(mp.find(digits[index])!=mp.end()){
-                op.push_back(mp[digits[index]][i]);
-                solve(digits,mp,index+1,op);
-                op.pop_back();                
-            // }
+            op.push_back(mp[digits[index]][i]);
+            solve(digits,mp,index+1,op);
+            op.pop_back();
         }
     }
     
