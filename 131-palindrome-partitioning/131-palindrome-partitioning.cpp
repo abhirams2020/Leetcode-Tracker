@@ -36,22 +36,20 @@ public:
     
     vector<vector<string>> res;
     
-    int dp[16][16];
+    map<pair<int,int>,bool> dp;
     
     bool checkPal(string str, int left, int right){
-        if(dp[left][right] != -1){
-            return dp[left][right];
+        if(dp.find(make_pair(left,right))!=dp.end()){
+            return dp[make_pair(left,right)];
         }
         while(left<right){
             if(str[left]!=str[right]){
-                dp[left][right] = 0;
-                return false;
+                return dp[make_pair(left,right)] = false;
             }
             left++;
             right--;
         }
-        dp[left][right] = 1;
-        return true;
+        return dp[make_pair(left,right)] = true;
     }
     
     void solve(string str, int index, vector<string> &op){
@@ -69,7 +67,6 @@ public:
     }
     
     vector<vector<string>> partition(string s) {
-        memset(dp,-1,sizeof(dp));
         vector<string> op;
         solve(s,0,op);
         return res;
