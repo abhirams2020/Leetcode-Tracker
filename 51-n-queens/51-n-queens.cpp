@@ -41,10 +41,10 @@ public:
         return true;
     }
     
-    bool solve(vector<string> &board, int row, int n){
+    void solve(vector<string> &board, int row, int n){
         if(row==board.size() || n==0){
             res.push_back(board);
-            return true;
+            return;
         }
         for(int j=0;j<board.size();j++){
             if(isValid(board,row,j)){
@@ -53,7 +53,6 @@ public:
                 board[row][j] = '.';
             }
         }
-        return false;
     }
     
     vector<vector<string>> solveNQueens(int n) {
