@@ -2,21 +2,16 @@ class Solution {
 public:
     vector<vector<string>> res;
     
-    unordered_map<string,bool> dp;
-    
     bool checkPal(string str){
-        if(dp.find(str)!=dp.end()){
-            return dp[str];
-        }
         int left = 0, right = str.length()-1;
         while(left<right){
             if(str[left]!=str[right]){
-                return dp[str] = false;
+                return false;
             }
             left++;
             right--;
         }
-        return dp[str] = true;
+        return true;
     }
     
     void solve(string str, vector<string> &op){
