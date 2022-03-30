@@ -23,6 +23,7 @@ public:
         if(dp[index]!=-1){
             return dp[index];
         }
+        // include nums[index] and move to index+2 OR not include nums[index] and move to index+1
         return dp[index] = max(solve(nums,index+1) ,nums[index] + solve(nums,index+2));
     }
     
