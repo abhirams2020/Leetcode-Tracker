@@ -1,6 +1,8 @@
 class Solution {
 public:
-    int dp[3][3];
+    int dpRow[9];
+    int dpCol[9];
+    int dpGrid[3][3];
     bool check(vector<vector<char>>& board, int row, int col){
 
         if(row==board.size()-1 && col==board.size()-1){
@@ -10,45 +12,65 @@ public:
             return check(board, row+1, 0);
         }
         unordered_set<char> s;
-        for(int i=0;i<9;i++){
-            if(s.count(board[i][col])){
-                cout<<i<<" "<<col;
+        if(dpCol[col]!=-1){
+            if(dpCol[col]==0){
                 return false;
             }
-            if(board[i][col]!='.')
-                s.insert(board[i][col]);
         }
-        s.clear();
-        for(int j=0;j<9;j++){
-            if(s.count(board[row][j])){
-                cout<<row<<" "<<j;
+        else {
+            for(int i=0;i<9;i++){
+                if(s.count(board[i][col])){
+                    cout<<i<<" "<<col;
+                    dpCol[col]=0;
+                    return false;
+                }
+                if(board[i][col]!='.')
+                    s.insert(board[i][col]);
+            }
+            dpCol[col]=1;
+            s.clear();            
+        }
+        
+        if(dpRow[row]!=-1){
+            if(dpRow[row]==0){
                 return false;
             }
-            if(board[row][j]!='.')
-                s.insert(board[row][j]);
         }
-        s.clear();
-        int gridRow = 3*(row/3);
-        int gridCol = 3*(col/3);
+        else {
+            for(int j=0;j<9;j++){
+                if(s.count(board[row][j])){
+                    cout<<row<<" "<<j;
+                    dpRow[row] = 0;
+                    return false;
+                }
+                if(board[row][j]!='.')
+                    s.insert(board[row][j]);
+            }
+            dpRow[row] = 1;
+            s.clear();            
+        }
+
         int dpRow = row/3, dpCol = col/3;
-        if(dp[dpRow][dpCol]!=-1){
-            if(dp[dpRow][dpCol]==0){
+        if(dpGrid[dpRow][dpCol]!=-1){
+            if(dpGrid[dpRow][dpCol]==0){
                 return false;
             }
         }
-        else{
+        else{        
+            int gridRow = 3*(row/3);
+            int gridCol = 3*(col/3);
             for(int i=gridRow; i<gridRow+3;i++){
                 for(int j=gridCol; j<gridCol+3; j++){
                     if(s.count(board[i][j])){
                         cout<<i<<" "<<j;
-                        dp[dpRow][dpCol] = 0;
+                        dpGrid[dpRow][dpCol] = 0;
                         return false;
                     }
                     if(board[i][j]!='.')
                         s.insert(board[i][j]);
                 }
             }
-            dp[dpRow][dpCol] = 1;
+            dpGrid[dpRow][dpCol] = 1;
         }
 
         
@@ -56,7 +78,9 @@ public:
     }
     
     bool isValidSudoku(vector<vector<char>>& board) {
-        memset(dp,-1,sizeof(dp));
+        memset(dpCol,-1,sizeof(dpCol));
+        memset(dpRow,-1,sizeof(dpRow));
+        memset(dpGrid,-1,sizeof(dpGrid));
         return check(board,0,0);
     }
 };
