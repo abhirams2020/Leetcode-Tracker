@@ -11,6 +11,9 @@ public:
         if(col==board.size()){
             return check(board, row+1, 0);
         }
+        if(board[row][col]=='.'){
+            return check(board, row, col+1);
+        }
         unordered_set<char> s;
         if(dpCol[col]!=-1){
             if(dpCol[col]==0){
@@ -69,8 +72,6 @@ public:
             }
             dpGrid[dpRow][dpCol] = 1;
         }
-
-        
         return check(board, row, col+1);
     }
     
