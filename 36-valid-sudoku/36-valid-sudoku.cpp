@@ -20,7 +20,6 @@ public:
         else {
             for(int i=0;i<9;i++){
                 if(s.count(board[i][col])){
-                    cout<<i<<" "<<col;
                     dpCol[col]=0;
                     return false;
                 }
@@ -39,7 +38,6 @@ public:
         else {
             for(int j=0;j<9;j++){
                 if(s.count(board[row][j])){
-                    cout<<row<<" "<<j;
                     dpRow[row] = 0;
                     return false;
                 }
@@ -62,7 +60,6 @@ public:
             for(int i=gridRow; i<gridRow+3;i++){
                 for(int j=gridCol; j<gridCol+3; j++){
                     if(s.count(board[i][j])){
-                        cout<<i<<" "<<j;
                         dpGrid[dpRow][dpCol] = 0;
                         return false;
                     }
