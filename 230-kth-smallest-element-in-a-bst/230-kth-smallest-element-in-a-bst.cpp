@@ -11,7 +11,6 @@
  */
 class Solution {
 public:
-    // priority_queue<int,vector<int>,greater<>> pq;
     int res = 0;
     void inorder(TreeNode* root, int& i, int k){
         if(!root){
