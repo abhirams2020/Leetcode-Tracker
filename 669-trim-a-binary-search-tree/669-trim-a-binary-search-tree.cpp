@@ -27,4 +27,15 @@ public:
         root->left = trimBST(root->left, low, high);
         return root;
     }
+        
+    /*  if root less than low, root of result should be trimBST(root->right)
+        if no root greater than low, it returns NULL
+
+        if root greater than high, root of result should be trimBST(root->left)
+        if no root less than high, it returns NULL
+
+        if root between low and high, it is valid root
+        root->left and root->right should be also valid, so use trimBST
+    */
+
 };
