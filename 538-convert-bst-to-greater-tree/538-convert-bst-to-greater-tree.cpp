@@ -45,12 +45,14 @@ public:
         if(!root){
             return NULL;
         }
-        root->right = convertBST(root->right);
+        if(root->right)
+            root->right = convertBST(root->right);
         
         sum += root->val;
         root->val = sum;
         
-        root->left = convertBST(root->left);
+        if(root->left)
+            root->left = convertBST(root->left);
         return root;
     }
 };
