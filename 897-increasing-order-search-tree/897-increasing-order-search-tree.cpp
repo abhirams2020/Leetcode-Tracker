@@ -12,8 +12,8 @@
 class Solution {
 public:
     
-    TreeNode* ans = new TreeNode();
-    TreeNode* curr = ans;
+    TreeNode* dummy = new TreeNode();
+    TreeNode* curr = dummy;
     
     void inorder(TreeNode* root){
         if(!root){
@@ -32,6 +32,6 @@ public:
             return NULL;
         }
         inorder(root);
-        return ans->right;
+        return dummy->right;
     }
 };
