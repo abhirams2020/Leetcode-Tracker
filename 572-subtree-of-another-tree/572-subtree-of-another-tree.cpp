@@ -25,9 +25,6 @@ public:
         if(!root){
             return false;
         }
-        if(isSametree(root,subRoot)){
-            return true;
-        }
-        return isSubtree(root->left,subRoot) || isSubtree(root->right,subRoot);
+        return isSametree(root,subRoot) || isSubtree(root->left,subRoot) || isSubtree(root->right,subRoot);
     }
 };
