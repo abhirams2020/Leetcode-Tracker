@@ -68,7 +68,7 @@ public:
         
         cout<<small<<" "<<large<<endl;
         cout<<start<<" "<<end<<endl;
-        if(small!=INT_MAX && start!=end){
+        if(small!=INT_MAX){
             return end - start + 1;
         }
         return 0;
