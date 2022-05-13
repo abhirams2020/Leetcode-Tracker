@@ -38,7 +38,7 @@ public:
     int findUnsortedSubarray(vector<int>& nums) {
         int n = nums.size();
         int small = INT_MAX, large = INT_MIN;
-        int start=0,end=n-1;
+        int start=-1,end=n-1;
         
         for(int i=0;i<n-1;i++){
             if(nums[i]>nums[i+1]){
@@ -66,9 +66,7 @@ public:
             }
         }
         
-        cout<<small<<" "<<large<<endl;
-        cout<<start<<" "<<end<<endl;
-        if(small!=INT_MAX){
+        if(start!=-1){
             return end - start + 1;
         }
         return 0;
