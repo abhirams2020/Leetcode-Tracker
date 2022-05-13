@@ -3,6 +3,7 @@ public:
     int trap(vector<int>& height) {
         int left=0, right=0, sum=0, n = height.size();
         vector<int> maxLeft(n), maxRight(n);
+        
         for(int i=0;i<n;i++){
             left = max(height[i],left);
             maxLeft[i] = left;
@@ -14,12 +15,9 @@ public:
         }
         
         for(int i=0;i<n;i++){
-            cout<<maxLeft[i]<<"\t"<<maxRight[i]<<endl;
-        }
-        
-        for(int i=0;i<n;i++){
             sum += min(maxLeft[i],maxRight[i]) - height[i];
         }
+        
         return sum;
     }
 };
