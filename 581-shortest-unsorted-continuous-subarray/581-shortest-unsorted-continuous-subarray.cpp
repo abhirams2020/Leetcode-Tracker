@@ -65,20 +65,20 @@ public:
                 large = max(nums[i], large);
             }
         }
+    
+        while(start<n-1 && small >= nums[start]){
+            start++;
+        }
+        
+        while(end>0 && large <= nums[end]){
+            end--;
+        }
         
         if(small == INT_MAX){
             return 0;
         }
         
-        while(small >= nums[start]){
-            start++;
-        }
-        
-        while(large <= nums[end]){
-            end--;
-        }
-        
         return end - start + 1;
-        
+    
     }
 };
