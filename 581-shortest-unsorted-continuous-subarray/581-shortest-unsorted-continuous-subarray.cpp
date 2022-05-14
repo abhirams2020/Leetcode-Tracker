@@ -41,41 +41,44 @@ public:
     // if there exist a subarray that need to be sorted, the start position will be changed
     // so we check if start is -1. if not we return the length of subarray. else 0
     
+    bool isOutOfOrder(vector<int>& nums, int i){
+        if(nums.size() <= 1){
+            return false;
+        }
+        if(i==0){
+            return nums[i]>nums[i+1];
+        }
+        if(i==nums.size()-1){
+            return nums[i]<nums[i-1];
+        }
+        return nums[i]>nums[i+1] || nums[i]<nums[i-1];
+    }
+    
     int findUnsortedSubarray(vector<int>& nums) {
         int n = nums.size();
         int small = INT_MAX, large = INT_MIN;
-        int start=-1,end;
+        int start=0, end=n-1;
         
-        for(int i=0;i<n-1;i++){
-            if(nums[i]>nums[i+1]){
+        for(int i=0;i<n;i++){
+            if(isOutOfOrder(nums,i)){
+                small = min(nums[i], small);
                 large = max(nums[i], large);
             }
         }
         
-        for(int i=n-1;i>=1;i--){
-            if(nums[i]<nums[i-1]){
-                small = min(nums[i], small);
-            }
+        if(small == INT_MAX){
+            return 0;
         }
         
-        for(int i=n-1;i>=0;i--){
-            if(nums[i]<large){
-                end = i;
-                break;
-            }
+        while(small >= nums[start]){
+            start++;
         }
         
-        for(int i=0;i<n;i++){
-            if(nums[i]>small){
-                start = i;
-                break;
-            }
+        while(large <= nums[end]){
+            end--;
         }
         
-        if(start!=-1){
-            return end - start + 1;
-        }
-        return 0;
+        return end - start + 1;
         
     }
 };
