@@ -10,7 +10,11 @@ public:
             if(height[l]<height[r]){
                 l++;
             }
+            else if(height[l]>height[r]){
+                r--;
+            }
             else {
+                l++;
                 r--;
             }
         }
