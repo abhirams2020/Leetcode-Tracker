@@ -1,50 +1,39 @@
 class Solution {
 public:
-    
-    vector<vector<int>> twoSum(vector<int>& nums, int start, int target) {
+    vector<vector<int>> threeSum(vector<int>& arr) {
         vector<vector<int>> res;
-        int l=start, r=nums.size()-1;
-        while(l<r){
-            if(nums[l]+nums[r] == target){
-                vector<int> temp;
-                temp.push_back(nums[l]);
-                temp.push_back(nums[r]);
-                res.push_back(temp);
-                l++;
-                r--;
-            }
-            else if(nums[l]+nums[r] < target){
-                l++;
-            }
-            else if(nums[l]+nums[r] > target){
-                r--;
-            }
-        }
-        return res;
-    }
-    
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        vector<vector<int>> res;
-        if(nums.size()==0){
-            return res;
-        }
-        set<vector<int>> st;
-        sort(nums.begin(),nums.end());
-        for(int i=0;i<nums.size()-1;i++){
-            if(i!=0 && nums[i]==nums[i-1]){
+        sort(arr.begin(),arr.end());
+        int n = arr.size();
+        for(int i=0 ; i<n && arr[i]<=0 ; i++){
+            if(i!=0 && (arr[i]==arr[i-1])){ // i will proceed only at non duplicate positions
                 continue;
             }
-            vector<vector<int>> temp;
-            temp = twoSum(nums,i+1,-nums[i]);
-            for(auto v:temp){
-                if(v.size()!=0){
-                    v.push_back(nums[i]);
-                    st.insert(v);
+            int sum = -arr[i];
+            int lo = i+1;
+            int hi = n-1;
+            while(lo<hi){
+                if(arr[lo]+arr[hi]==sum){
+                    vector<int> temp = {arr[i],arr[lo],arr[hi]};
+                    res.push_back(temp);
+                    int curr_lo = lo;
+                    int curr_hi = hi;
+                    // * removing duplicate trick *
+                    // move lo to right till it reaches a larger value
+                    // move hi to left till it reaches a smaller value
+                    while(lo<=n-1 && arr[lo]==arr[curr_lo]){
+                        lo++;
+                    }
+                    while(hi>=i+1 && arr[hi]==arr[curr_hi]){
+                        hi--;
+                    }
+                }
+                else if(arr[lo]+arr[hi]<sum){ // if arr[lo] + arr[hi] < sum, means lo needs to increase
+                    lo++;
+                }
+                else {  // if arr[lo] + arr[hi] > sum, means hi needs to decrease
+                    hi--;
                 }
             }
-        }
-        for(auto i:st){
-            res.push_back(i);
         }
         return res;
     }
