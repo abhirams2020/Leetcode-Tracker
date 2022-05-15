@@ -16,13 +16,19 @@ public:
 //     }
     
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        map<vector<int>, vector<string>> mp;
+        unordered_map<string, vector<string>> mp;
         for(auto i:strs){
             vector<int> v(26,0);
+            string s;
             for(auto c:i){
                 v[c-'a']++;
             }
-            mp[v].push_back(i);
+            for(int j=0;j<26;j++){
+                for(int k=0;k<v[j];k++){
+                    s.push_back('a'+j);
+                }
+            }
+            mp[s].push_back(i);
         }
         vector<vector<string>> res;
         for(auto i:mp){
