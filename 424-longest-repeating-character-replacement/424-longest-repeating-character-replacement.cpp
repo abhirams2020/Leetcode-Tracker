@@ -1,7 +1,8 @@
 class Solution {
 public:
     int characterReplacement(string s, int k) {
-        unordered_map<char,int> count;
+        // unordered_map<char,int> count;
+        vector<int> count(256,0);
         int maxLen = 1;
         char maxChar = s[0];
         int l=0;
@@ -14,9 +15,6 @@ public:
                 count[s[l]]--;
                 if(count[s[r]] >= count[maxChar]){
                     maxChar = s[r];
-                }
-                if(count[s[l]] == 0){
-                    count.erase(s[l]);
                 }
                 l++;
             }
