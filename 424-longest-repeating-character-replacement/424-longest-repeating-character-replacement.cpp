@@ -12,6 +12,9 @@ public:
             }
             while((r-l+1) - count[maxChar] > k){
                 count[s[l]]--;
+                if(count[s[r]] >= count[maxChar]){
+                    maxChar = s[r];
+                }
                 l++;
             }
             maxLen = max(maxLen, r-l+1);
