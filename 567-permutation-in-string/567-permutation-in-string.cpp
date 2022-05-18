@@ -1,15 +1,6 @@
 class Solution {
 public:
     
-    bool isSubsetMap(unordered_map<char,int> mp1, unordered_map<char,int> mp2){
-        for(auto i:mp1){
-            if(mp2[i.first] != i.second){
-                return false;
-            }
-        }
-        return true;
-    }
-    
     bool checkInclusion(string s1, string s2) {
         unordered_map<char, int> mp1, mp2;
         for(auto i:s1){
@@ -19,12 +10,11 @@ public:
         for(r=0; r<s2.length(); r++) {
             mp2[s2[r]]++;
             if(r-l+1 == s1.length()) {
-                // if(isSubsetMap(mp1,mp2)){
-                //     return true;
-                // }
                 if(mp1 == mp2){
                     return true;
                 }
+                
+                // move left ptr
                 mp2[s2[l]]--;
                 if(mp2[s2[l]] == 0){
                     mp2.erase(s2[l]);
