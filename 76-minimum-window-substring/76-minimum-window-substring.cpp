@@ -50,12 +50,11 @@ public:
     string minWindow(string searchString, string t) {
 
         // Our hashtable of characters filled with occurences in our string
-        vector<int> table(128, 0);
-        unordered_set<char> st;
+        // vector<int> table(128, 0);
+        unordered_map<char,int> table;
         // Store the frequency of characters in string t
         for(auto character : t) {
             table[character]++;
-            st.insert(character);
         }
 
         int start = 0;
@@ -67,12 +66,10 @@ public:
         // Here we use the 2 pointer approach
         while(end < searchString.size()) {
 
-            if(st.count(searchString[end])){
-                if(table[searchString[end]] > 0) {
-                    counter--;
-                }
-                table[searchString[end]]--;
+            if(table.count(searchString[end]) && table[searchString[end]] > 0) {
+                counter--;
             }
+            table[searchString[end]]--;
             end++;
 
             while(counter == 0) {
@@ -80,11 +77,9 @@ public:
                     startMin = start;
                     minimum = end - start;
                 }
-                if(st.count(searchString[start])){
-                    table[searchString[start]]++;
-                    if(table[searchString[start]] > 0) {
-                        counter++;
-                    }
+                table[searchString[start]]++;
+                if(table.count(searchString[start]) && table[searchString[start]] > 0) {
+                    counter++;
                 }
                 start++;
             }
