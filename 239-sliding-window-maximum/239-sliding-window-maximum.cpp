@@ -1,10 +1,8 @@
 class Solution {
 public:
-    typedef pair<int,int> pp;
-    
     vector<int> maxSlidingWindow(vector<int>& nums, int k) {
         vector<int> ans;
-        priority_queue<pp> pq;
+        priority_queue<pair<int,int>> pq;
         int l=0;
         for(int r=0;r<nums.size();r++){
             pq.push({nums[r],r});
