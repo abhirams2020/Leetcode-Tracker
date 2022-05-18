@@ -61,7 +61,7 @@ public:
         int end = 0;
         int counter = t.size();
         int startMin = 0;
-        int minimum = INT_MAX;
+        int minLen = INT_MAX;
 
         // Here we use the 2 pointer approach
         while(end < searchString.size()) {
@@ -73,9 +73,9 @@ public:
             end++;
 
             while(counter == 0) {
-                if(end - start < minimum) {
+                if(end - start < minLen) {
                     startMin = start;
-                    minimum = end - start;
+                    minLen = end - start;
                 }
                 table[searchString[start]]++;
                 if(table.count(searchString[start]) && table[searchString[start]] > 0) {
@@ -86,10 +86,10 @@ public:
         }
 
         // Case when no substring satisfies
-        if(minimum == INT_MAX) {
+        if(minLen == INT_MAX) {
           return "";
         }
 
-        return searchString.substr(startMin, minimum);
+        return searchString.substr(startMin, minLen);
     }
 };
