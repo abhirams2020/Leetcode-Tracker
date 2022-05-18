@@ -19,7 +19,10 @@ public:
         for(r=0; r<s2.length(); r++) {
             mp2[s2[r]]++;
             if(r-l+1 == s1.length()) {
-                if(isSubsetMap(mp1,mp2)){
+                // if(isSubsetMap(mp1,mp2)){
+                //     return true;
+                // }
+                if(mp1 == mp2){
                     return true;
                 }
                 mp2[s2[l]]--;
