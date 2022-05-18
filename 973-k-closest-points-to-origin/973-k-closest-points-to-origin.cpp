@@ -9,6 +9,7 @@ public:
         priority_queue<pair<int,int>> pq;
         
         for(int i=0;i<points.size();i++){
+            // multiply -1 to dist from origin so that pq works like minheap
             pq.push(make_pair(-1*dist(points[i][0], points[i][1]) ,i));
         }
         
