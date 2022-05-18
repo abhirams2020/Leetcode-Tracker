@@ -43,13 +43,19 @@ public:
         vector<int> ans;
         deque<int> dq;
         for(int i=0;i<nums.size();i++){
+            // As the window move on, element nums[i-k] will be outdated
             if(!dq.empty() && dq.front() == i-k){
                 dq.pop_front();
             }
+            
+            // We clear all elements less than nums[i] from right of queue to left.
+            // This ensure the queue is in decreasing order, i.e. monotonic queue
             while(!dq.empty() && nums[dq.back()] < nums[i]){
                 dq.pop_back();
             }
             dq.push_back(i);
+            
+            // Since the queue is monotonic we know max element is always at front
             if(i+1>=k){
                 ans.push_back(nums[dq.front()]);
             }
