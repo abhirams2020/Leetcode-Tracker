@@ -1,14 +1,11 @@
 class KthLargest {
 public:
+    // instead of creating minheap -> priority_queue<int, vector<int>, greater<>> pq
+    // push -value into the pq and display -ve of top() value
+    // same functioning as minheap
     priority_queue<int> pq;
     int size;
     
-    void print(priority_queue<int> p){
-        while(!p.empty()){
-            cout<<p.top()<<endl;
-            p.pop();
-        }
-    }
     KthLargest(int k, vector<int>& nums) {
         size = k;
         for(auto i:nums){
