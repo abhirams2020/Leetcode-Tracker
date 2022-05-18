@@ -36,7 +36,6 @@ public:
                 if(table.count(searchString[start])){
                     table[searchString[start]]++;
                     if(table[searchString[start]] > 0) {
-                        cout<<searchString[start]<<" ";
                         counter++;
                     }
                 }
