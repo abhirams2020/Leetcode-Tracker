@@ -1,44 +1,54 @@
 class Solution {
 public:
-    string minWindow(string s, string t) {
+    string minWindow(string searchString, string t) {
 
-    // Store the counts of characters in 't'
-    unordered_map<char, int> letters;
-    for(auto c : t) letters[c]++; 
+        // Our hashtable of characters filled with occurences in our string
+        // vector<int> table(128, 0);
+        unordered_map<char,int> table;
 
-    int count = 0; // Number of valid letters in the current window
-    int low = 0; // Stores the position of the first character in window
-    // Stores location and length of best substring
-    int min_length = INT_MAX, min_start = 0;
-    
-    // Iterate over 's'
-    for(int high = 0; high<s.length(); high++) {
-        // If this character is required, then update count (Add it to the window)
-        if(letters[s[high]] > 0) count++;
-        // Reduce the count for this character (since we have added this to the window)
-        letters[s[high]]--;
-        // If we have all the valid characters, update substring
-        if(count == t.length()) {
-            // What exactly are we doing in the loop below?
-            //  This piece of code basically makes sure that letters[s[low]] is not negative
-            //  Because if it is negative, than that means we have more s[low]s than required.
-            //  So we have to remove such characters
-            while(low < high && letters[s[low]] < 0){ 
-                letters[s[low]]++; // Remove character from window, update count
-                low++; // Update substring window start
+        // Store the frequency of characters in string t
+        for(auto character : t) {
+            table[character]++;
+        }
+
+        int start = 0;
+        int end = 0;
+        int counter = t.size();
+        int startMin = 0;
+        int minimum = INT_MAX;
+
+        // Here we use the 2 pointer approach
+        while(end < searchString.size()) {
+
+            if(table.count(searchString[end])){
+                if(table[searchString[end]] > 0) {
+                    counter--;
+                }
+                table[searchString[end]]--;
             }
-            // Update substring
-            if(min_length > (high - low + 1)){
-                min_start = low; // Set start
-                min_length = high - low + 1; // Set length
+            end++;
+
+            while(counter == 0) {
+                if(end - start < minimum) {
+                    startMin = start;
+                    minimum = end - start;
+                }
+                if(table.count(searchString[start])){
+                    table[searchString[start]]++;
+                    if(table[searchString[start]] > 0) {
+                        cout<<searchString[start]<<" ";
+                        counter++;
+                    }
+                }
+                start++;
             }
         }
+
+        // Case when no substring satisfies
+        if(minimum == INT_MAX) {
+          return "";
+        }
+
+        return searchString.substr(startMin, minimum);
     }
-
-    // No substring satisfies 't'
-    if(min_length == INT_MAX) return "";
-
-    // Return the best substring
-    return s.substr(min_start, min_length);
-}
 };
