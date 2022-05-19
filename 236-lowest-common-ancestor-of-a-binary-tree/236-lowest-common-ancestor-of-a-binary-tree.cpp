@@ -18,16 +18,15 @@ public:
     }
     
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        if(!root){
-            return NULL;
+        if(!root || root==p || root==q){
+            return root;
         }
         TreeNode* l = lowestCommonAncestor(root->left,p,q);
         TreeNode* r = lowestCommonAncestor(root->right,p,q);
-        if(searchBT(root,p) && searchBT(root,q) && !l && !r){
-            return root;
-        }
-        if(l)
+        if(l==NULL)
+            return r;
+        if(r==NULL)
             return l;
-        return r;
+        return root;
     }
 };
