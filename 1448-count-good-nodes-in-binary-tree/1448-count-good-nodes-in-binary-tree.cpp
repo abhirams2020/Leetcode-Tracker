@@ -12,25 +12,25 @@
 class Solution {
 public:
     
-    void preorder(TreeNode* root,int &n, int maxVal){
+    void preorder(TreeNode* root, int &count, int maxSoFar){
         if(!root)
             return;
         
-        if(root->val >= maxVal){
-            maxVal = root->val;
-            n++;
+        if(root->val >= maxSoFar){
+            maxSoFar = root->val;
+            count++;
         }
         
-        preorder(root->left,n,maxVal);
-        preorder(root->right,n,maxVal);
+        preorder(root->left,count,maxSoFar);
+        preorder(root->right,count,maxSoFar);
     }
     
     int goodNodes(TreeNode* root) {
         if(!root){
             return 0;
         }
-        int n=0, maxVal = root->val;
-        preorder(root,n,maxVal);
-        return n;
+        int count=0, maxSoFar = root->val;
+        preorder(root,count,maxSoFar);
+        return count;
     }
 };
