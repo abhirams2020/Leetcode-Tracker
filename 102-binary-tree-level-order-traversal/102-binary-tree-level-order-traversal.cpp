@@ -42,7 +42,7 @@ public:
     //     return ans;
     // }
     
-    // PUSHING NULL POINTER FOR EACH LEVEL
+    // STORE SIZE OF PARENT AND WITH FOR LOOP PUSH CHILDREN INTO QUEUE
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> ans;
         if(!root){
