@@ -20,6 +20,7 @@ public:
             maxVal = root->val;
             n++;
         }
+        
         preorder(root->left,n,maxVal);
         preorder(root->right,n,maxVal);
     }
