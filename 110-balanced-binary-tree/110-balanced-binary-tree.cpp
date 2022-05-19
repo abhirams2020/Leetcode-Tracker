@@ -18,6 +18,9 @@ public:
     }
     
     bool isBalanced(TreeNode* root) {
-        return !root || (abs(maxDepth(root->left)-maxDepth(root->right)) <= 1 && isBalanced(root->left) && isBalanced(root->right));
+        if(!root)
+            return true;
+        
+        return abs(maxDepth(root->left)-maxDepth(root->right)) <= 1 && isBalanced(root->left) && isBalanced(root->right);
     }
 };
