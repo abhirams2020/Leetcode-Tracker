@@ -11,6 +11,38 @@
  */
 class Solution {
 public:
+    
+    // // PUSHING NULL POINTER FOR EACH LEVEL
+    // vector<vector<int>> levelOrder(TreeNode* root) {
+    //     vector<vector<int>> ans;
+    //     if(!root){
+    //         return ans;
+    //     }
+    //     queue<TreeNode*> q;
+    //     q.push(root);
+    //     q.push(NULL);
+    //     vector<int> temp;
+    //     while(!q.empty()){
+    //         TreeNode* curr = q.front();
+    //         q.pop();
+    //         if(curr == NULL){
+    //             ans.push_back(temp);
+    //             temp.clear();
+    //             if(!q.empty())
+    //                 q.push(NULL);
+    //         }
+    //         else {
+    //             if(curr->left)
+    //                 q.push(curr->left);
+    //             if(curr->right)
+    //                 q.push(curr->right);
+    //             temp.push_back(curr->val);
+    //         }
+    //     }
+    //     return ans;
+    // }
+    
+    // PUSHING NULL POINTER FOR EACH LEVEL
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> ans;
         if(!root){
@@ -18,30 +50,19 @@ public:
         }
         queue<TreeNode*> q;
         q.push(root);
-        q.push(NULL);
-        vector<int> temp;
-        
         while(!q.empty()){
-            TreeNode* curr = q.front();
-            q.pop();
-            
-            if(curr == NULL){
-                ans.push_back(temp);
-                temp.clear();
-                
-                if(!q.empty())
-                    q.push(NULL);
-            }
-            else {
+            int n = q.size();
+            vector<int> temp;
+            for(int i=0;i<n;i++){
+                TreeNode* curr = q.front();
+                q.pop();
                 if(curr->left)
                     q.push(curr->left);
-                
                 if(curr->right)
                     q.push(curr->right);
-
                 temp.push_back(curr->val);
             }
-            
+            ans.push_back(temp);
         }
         return ans;
     }
