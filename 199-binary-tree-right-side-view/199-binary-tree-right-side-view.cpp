@@ -41,6 +41,10 @@ public:
 //     }
     
     // USING RIGHT TO LEFT PREORDER TRAVERSAL
+    
+    // if currlevel==maxlevel, it means root is first element in the layer so far. 
+    // since we are doing reverse preorder traversal the first element in the layer will be rightmost.
+    // push that element to result vector and increase maxlevel by 1
     void revPreorder(TreeNode* root, vector<int> &ans, int curLevel, int &maxLevel) {
         if(!root)
             return;
