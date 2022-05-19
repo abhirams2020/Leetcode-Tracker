@@ -43,8 +43,8 @@ public:
     
     // USING RIGHT TO LEFT PREORDER TRAVERSAL
     
-    // if ans.size()==curlevel, it means root is first element in the layer so far. 
-    // since we are doing reverse preorder traversal the first element in the layer will be rightmost.
+    // if ans.size()==level, it means root is first element in the layer so far. 
+    // since we are doing reverse preorder traversal the first element in the level will be rightmost.
     // push that element to result vector and increase level by 1
     void revPreorder(TreeNode* root, vector<int> &ans, int level) {
         if(!root)
