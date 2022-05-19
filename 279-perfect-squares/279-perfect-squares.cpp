@@ -7,7 +7,7 @@ public:
             return 0;
         }
         if(sum<0){
-            return INT_MAX;
+            return 100001;
         }
         if(dp.count(sum)){
             return dp[sum];
