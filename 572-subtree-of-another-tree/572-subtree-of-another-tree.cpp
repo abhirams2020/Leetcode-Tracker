@@ -11,20 +11,18 @@
  */
 class Solution {
 public:
-    
-    bool isSametree(TreeNode* root1, TreeNode* root2){
-        if(root1 && root2){
-            return root1->val==root2->val && isSametree(root1->left,root2->left) && isSametree(root1->right,root2->right);
-        }
-        else {
-            return root1==root2;
-        }
+    bool isSameTree(TreeNode* a, TreeNode* b){
+        if(!a and !b)
+            return true;
+        if(!a or !b)
+            return false;
+        return a->val==b->val && isSameTree(a->left,b->left) && isSameTree(a->right,b->right);
     }
     
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
         if(!root){
             return false;
         }
-        return isSametree(root,subRoot) || isSubtree(root->left,subRoot) || isSubtree(root->right,subRoot);
+        return isSameTree(root,subRoot) || isSubtree(root->left,subRoot) || isSubtree(root->right,subRoot);
     }
 };
