@@ -1,6 +1,6 @@
 class Solution {
 public:
-    unordered_map<int,int> dp;
+    vector<int> dp;
     
     int check(int sum){
         if(sum==0){
@@ -9,7 +9,7 @@ public:
         if(sum<0){
             return 100001;
         }
-        if(dp.count(sum)){
+        if(dp[sum]!=-1){
             return dp[sum];
         }
         int res = INT_MAX;
@@ -21,6 +21,7 @@ public:
     }
     
     int numSquares(int n) {
+        dp.resize(n+1,-1);
         int ans = check(n);
         return ans;
     }
