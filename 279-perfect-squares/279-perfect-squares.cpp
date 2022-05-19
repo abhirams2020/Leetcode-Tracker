@@ -6,9 +6,6 @@ public:
         if(sum==0){
             return 0;
         }
-        if(sum<0){
-            return 100001;
-        }
         if(dp[sum]!=-1){
             return dp[sum];
         }
