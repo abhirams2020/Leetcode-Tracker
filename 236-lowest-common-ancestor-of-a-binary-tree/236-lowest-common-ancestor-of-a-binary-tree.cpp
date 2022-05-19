@@ -9,14 +9,6 @@
  */
 class Solution {
 public:
-    
-    bool searchBT(TreeNode* root, TreeNode* n){
-        if(!root){
-            return false;
-        }
-        return root==n || searchBT(root->left,n) || searchBT(root->right,n);
-    }
-    
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if(!root || root==p || root==q){
             return root;
