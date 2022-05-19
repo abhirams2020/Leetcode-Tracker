@@ -11,56 +11,56 @@
  */
 class Solution {
 public:
-//     // USING LEVEL ORDER TRAVERSAL. KEEPING TRACK OF LAST VALUE IN EVERY LEVEL
-//     vector<int> rightSideView(TreeNode* root) {
-//         vector<int> ans;
-//         if(!root)
-//             return ans;
+    // USING LEVEL ORDER TRAVERSAL. KEEPING TRACK OF LAST VALUE IN EVERY LEVEL
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int> ans;
+        if(!root)
+            return ans;
         
-//         queue<TreeNode*> q;
-//         q.push(root);
-//         int last = root->val;
-        
-//         while(!q.empty()){
-//             int n = q.size();
-//             ans.push_back(last);
-//             for(int i=0;i<n;i++){
-//                 TreeNode* curr = q.front();
-//                 q.pop();
-//                 if(curr->left){
-//                     q.push(curr->left);
-//                     last = curr->left->val;
-//                 }
-//                 if(curr->right){
-//                     q.push(curr->right);
-//                     last = curr->right->val;
-//                 }
-//             }
-//         }
-//         return ans;
-//     }
+        queue<TreeNode*> q;
+        q.push(root);
+        int last;
+        while(!q.empty()){
+            int n = q.size();
+            for(int i=0;i<n;i++){
+                TreeNode* curr = q.front();
+                q.pop();
+                if(i==n-1){
+                    cout<<curr->val;
+                    last = curr->val;
+                }
+                if(curr->left){
+                    q.push(curr->left);
+                }
+                if(curr->right){
+                    q.push(curr->right);
+                }
+            }
+            ans.push_back(last);
+        }
+        return ans;
+    }
     
     // USING RIGHT TO LEFT PREORDER TRAVERSAL
     
-    // if currlevel==maxlevel, it means root is first element in the layer so far. 
+    // if ans.size()==curlevel, it means root is first element in the layer so far. 
     // since we are doing reverse preorder traversal the first element in the layer will be rightmost.
-    // push that element to result vector and increase maxlevel by 1
-    void revPreorder(TreeNode* root, vector<int> &ans, int curLevel, int &maxLevel) {
-        if(!root)
-            return;
-        if(curLevel==maxLevel){
-            ans.push_back(root->val);
-            maxLevel+=1;
-        }
-        revPreorder(root->right, ans, curLevel+1, maxLevel);
-        revPreorder(root->left, ans, curLevel+1, maxLevel);
-    }
+    // push that element to result vector and increase level by 1
+//     void revPreorder(TreeNode* root, vector<int> &ans, int &curLevel) {
+//         if(!root)
+//             return;
+//         if(ans.size()==curLevel){
+//             ans.push_back(root->val);
+//             curLevel+=1;
+//         }
+//         revPreorder(root->right, ans, curLevel);
+//         revPreorder(root->left, ans, curLevel);
+//     }
     
-    vector<int> rightSideView(TreeNode* root) {
-        vector<int> ans;
-        int curLevel = 0;
-        int maxLevel = 0;
-        revPreorder(root,ans,curLevel,maxLevel);
-        return ans;
-    }
+//     vector<int> rightSideView(TreeNode* root) {
+//         vector<int> ans;
+//         int curLevel = 0;
+//         revPreorder(root,ans,curLevel);
+//         return ans;
+//     }
 };
