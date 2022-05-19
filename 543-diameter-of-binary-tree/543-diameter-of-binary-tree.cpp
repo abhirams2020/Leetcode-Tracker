@@ -12,17 +12,17 @@
 class Solution {
 public:
     int maxDepth(TreeNode* root){
-        if(!root)
-            return 0;
-        return 1 + max(maxDepth(root->left),maxDepth(root->right));
+        if(!root) return 0;
+        if(!root->left && !root->right) return 1;
+        return 1 + max(maxDepth(root->left), maxDepth(root->right));
     }
     
     int diameterOfBinaryTree(TreeNode* root) {
-        if(!root)
+        if(!root){
             return 0;
-        // The length of a path between two nodes is represented by the number of edges between them.
-        int currDiameter = maxDepth(root->left) + maxDepth(root->right);
-        int childDiameter = max(diameterOfBinaryTree(root->left), diameterOfBinaryTree(root->right));
-        return max(currDiameter, childDiameter);
+        }
+        int curr_dia = maxDepth(root->left) + maxDepth(root->right);
+        int child_dia = max(diameterOfBinaryTree(root->left), diameterOfBinaryTree(root->right));
+        return max(curr_dia, child_dia);
     }
 };
