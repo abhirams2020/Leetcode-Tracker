@@ -2,26 +2,22 @@ class MinStack {
 public:
     stack<int> s;
     deque<int> dq;
-    int min = INT_MAX;
     
     MinStack() {
-        dq.push_front(min);
     }
     
     void push(int val) {
         s.push(val);
-        if(val <= min){
+        if(dq.empty() || val <= dq[0]){
             dq.push_front(val);
-            min = val;
         }
     }
     
     void pop() {
         int num = s.top();
         s.pop();
-        if(num == min){
+        if(num == dq[0]){
             dq.pop_front();
-            min = dq[0];
         }
     }
     
@@ -30,7 +26,7 @@ public:
     }
     
     int getMin() {
-        return min;
+        return dq[0];
     }
 };
 
