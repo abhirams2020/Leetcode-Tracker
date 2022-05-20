@@ -5,6 +5,7 @@ public:
     int min = INT_MAX;
     
     MinStack() {
+        dq.push_front(min);
     }
     
     void push(int val) {
@@ -20,10 +21,7 @@ public:
         s.pop();
         if(num == min){
             dq.pop_front();
-            if(!dq.empty())
-                min = dq[0];
-            else 
-                min = INT_MAX;
+            min = dq[0];
         }
     }
     
