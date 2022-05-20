@@ -8,7 +8,7 @@ public:
         stack<char> st;
         set<char> s = {'(','[','{'};
         for(char ch:str) {
-            if(s.find(ch)!=s.end()) {
+            if(s.count(ch)) {
                 st.push(ch);
             }
             else {
