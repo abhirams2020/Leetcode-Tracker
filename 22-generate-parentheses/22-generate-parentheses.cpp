@@ -1,24 +1,23 @@
 class Solution {
 public:
+    vector<string> ans;
     
-    vector<string> res;
-    
-    void solve(int n, int count, string op){
-        if(n==0){
-            if(count==0)
-                res.push_back(op);
+    void solve(int n, int open, int close, string s){
+        if(s.size()==2*n){
+            if(open==close)
+                ans.push_back(s);
             return;
         }
-        // if count>0, only then add )
-        solve(n-1,count+1,op+'(');
-        if(count){
-            solve(n-1,count-1,op+')');
+        if(open<=n){
+            solve(n,open+1,close,s+'(');
+            if(open>close){
+                solve(n,open,close+1,s+')');
+            }
         }
     }
     
     vector<string> generateParenthesis(int n) {
-        string op;
-        solve(2*n,0,op);
-        return res;
+        solve(n,0,0,"");
+        return ans;
     }
 };
