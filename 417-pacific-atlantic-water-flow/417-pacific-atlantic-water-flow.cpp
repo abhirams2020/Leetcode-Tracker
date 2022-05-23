@@ -28,8 +28,8 @@ public:
         int m = heights.size();
         int n = heights[0].size();
         
-        vector<vector<bool>> pacific(m, vector<bool> (n));
-        vector<vector<bool>> atlantic(m, vector<bool> (n));
+        vector<vector<bool>> pacific(m, vector<bool> (n,false));
+        vector<vector<bool>> atlantic(m, vector<bool> (n,false));
         
         // for(int i=0;i<heights.size();i++){
         //     for(int j=0;j<heights[0].size();j++){
