@@ -4,7 +4,7 @@ public:
         if(i<0 || j<0 || i==grid.size() || j==grid[0].size()){
             return 0;
         }
-        if(grid[i][j] == 0 || grid[i][j]==2){
+        if(grid[i][j] == 0 || grid[i][j] == 2){
             return 0;
         }
         grid[i][j] = 2;
