@@ -1,6 +1,7 @@
 class Solution {
 public:
     
+    // 0-water, 1-land, 2-visited land
     void fill(vector<vector<char>>& grid, int i, int j){
         if(i<0 || j<0 || i>=grid.size() || j>=grid[0].size()){
             return;
