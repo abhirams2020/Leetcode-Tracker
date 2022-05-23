@@ -31,20 +31,32 @@ public:
         vector<vector<bool>> pacific(m, vector<bool> (n));
         vector<vector<bool>> atlantic(m, vector<bool> (n));
         
-        for(int i=0;i<heights.size();i++){
-            for(int j=0;j<heights[0].size();j++){
-                if(i==0 || j==0){
-                    dfs(heights,pacific,i,j);
-                }
-                if(i==m-1 || j==n-1){
-                    dfs(heights,atlantic,i,j);
-                }
-            }
+        // for(int i=0;i<heights.size();i++){
+        //     for(int j=0;j<heights[0].size();j++){
+        //         if(i==0 || j==0){
+        //             dfs(heights,pacific,i,j);
+        //         }
+        //         if(i==m-1 || j==n-1){
+        //             dfs(heights,atlantic,i,j);
+        //         }
+        //     }
+        // }
+        
+        // iterating through first COLUMN for pacific and last for atlantic
+        for(int i=0;i<m;i++){
+            dfs(heights,pacific,i,0);
+            dfs(heights,atlantic,i,n-1);
+        }
+        
+        // iterating through first ROW for pacific and last for atlantic
+        for(int j=0;j<n;j++){
+            dfs(heights,pacific,0,j);
+            dfs(heights,atlantic,m-1,j);
         }
         
         for(int i=0;i<heights.size();i++){
             for(int j=0;j<heights[0].size();j++){
-                if(pacific[i][j] == 1 and atlantic[i][j] == 1){
+                if(pacific[i][j] == true && atlantic[i][j] == true){
                     res.push_back({i,j});
                 }
             }
