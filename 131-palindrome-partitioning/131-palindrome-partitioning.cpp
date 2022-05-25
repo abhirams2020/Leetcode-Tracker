@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<vector<string>> res;
     
-    bool isPalindrome(string s, int left, int right){
+    bool isPalindrome(string &s, int left, int right){
         while(left < right){
             if(s[left]!=s[right]){
                 return false;
@@ -13,7 +13,7 @@ public:
         return true;
     }
     
-    void dfs(string s, vector<string> &op, int index){
+    void dfs(string &s, vector<string> &op, int index){
         if(index==s.length()){
             res.push_back(op);
         }
