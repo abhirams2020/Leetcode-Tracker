@@ -7,11 +7,11 @@ public:
             res.push_back(op);
             return;
         }
-        if(index==nums.size() || target < nums[index]){
+        if(index==nums.size() || nums[index]>target){
             return;
         }
         for(int i=index;i<nums.size();i++){
-            if(i==index || nums[i]!=nums[i-1]){
+            if(nums[i]<=target && (i==index || nums[i]!=nums[i-1])){
                 op.push_back(nums[i]);
                 solve(nums,op,target-nums[i],i+1);
                 op.pop_back();
