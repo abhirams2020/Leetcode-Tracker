@@ -16,7 +16,8 @@ public:
     }
     
     int climbStairs(int n) {
-        dp.resize(n+1,-1);
+        dp = vector<int> (n+1, -1);
+        // dp.resize(n+1,-1);
         int res =  solve(n);
         for(auto i:dp){
             cout<<i<<" ";
