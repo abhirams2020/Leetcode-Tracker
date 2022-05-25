@@ -1,20 +1,22 @@
 class Solution {
 public:
     vector<vector<string>> res;
-    vector<vector<int>> dp;
+    map<pair<int,int>, bool> dp;
     
     bool isPalindrome(string s, int left, int right){
-        if(dp[left][right] != -1){
-            return dp[left][right];
+        if(dp.count({left,right})){
+            return dp[{left,right}];
         }
         while(left < right){
             if(s[left]!=s[right]){
-                return dp[left][right] = 0;
+                dp[{left,right}] = false;
+                return false;
             }
             left++;
             right--;
         }
-        return dp[left][right] = 1;
+        dp[{left,right}] = true;
+        return true;
     }
     
     void dfs(string s, vector<string> op, int index){
@@ -32,7 +34,6 @@ public:
     
     vector<vector<string>> partition(string s) {
         int n = s.length();
-        dp = vector<vector<int>> (n,vector<int>(n,-1));
         vector<string> op;
         dfs(s,op,0);
         return res;
