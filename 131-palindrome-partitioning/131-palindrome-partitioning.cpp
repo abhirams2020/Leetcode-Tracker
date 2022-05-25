@@ -1,21 +1,15 @@
 class Solution {
 public:
     vector<vector<string>> res;
-    map<pair<int,int>, bool> dp;
     
     bool isPalindrome(string s, int left, int right){
-        if(dp.count({left,right})){
-            return dp[{left,right}];
-        }
         while(left < right){
             if(s[left]!=s[right]){
-                dp[{left,right}] = false;
                 return false;
             }
             left++;
             right--;
         }
-        dp[{left,right}] = true;
         return true;
     }
     
