@@ -1,8 +1,8 @@
 class Solution {
 public:
-    vector<vector<int>> res;
     
-    void solve(vector<int> &nums, vector<int> op, int target, int index){
+    
+    void solve(vector<int> &nums, vector<vector<int>> &res, vector<int> op, int target, int index){
         if(target == 0){
             res.push_back(op);
             return;
@@ -13,16 +13,19 @@ public:
         for(int i=index;i<nums.size();i++){
             if(nums[i]<=target && (i==index || nums[i]!=nums[i-1])){
                 op.push_back(nums[i]);
-                solve(nums,op,target-nums[i],i+1);
+                solve(nums,res,op,target-nums[i],i+1);
                 op.pop_back();
             }
         }
     }
     
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-        sort(candidates.begin(), candidates.end());
+        vector<vector<int>> res;
         vector<int> op;
-        solve(candidates, op, target, 0);
+        
+        sort(candidates.begin(), candidates.end());
+
+        solve(candidates, res, op, target, 0);
         return res;
     }
 };
