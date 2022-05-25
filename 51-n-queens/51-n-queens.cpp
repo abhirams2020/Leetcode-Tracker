@@ -3,21 +3,14 @@ public:
     vector<vector<string>> res;
     
     bool isValid(vector<string>& board, int n, int row, int col){
-        // UP
+        // CHECK UP
         for(int i=0;i<n;i++){
             if(board[i][col]=='Q'){
                 return false;
             }
         }
         
-        // SIDE
-        for(int j=0;j<n;j++){
-            if(board[row][j]=='Q'){
-                return false;
-            }
-        }
-        
-        // LEFT DIAGONAL
+        // CHECK LEFT DIAGONAL
         int i = row, j = col;
         while(i>=0 && j>=0){
             if(board[i][j]=='Q'){
@@ -27,7 +20,7 @@ public:
             j--;
         }
         
-        // RIGHT DIAGONAL
+        // CHECK RIGHT DIAGONAL
         i = row, j = col;
         while(i>=0 && j<n){
             if(board[i][j]=='Q'){
@@ -39,24 +32,18 @@ public:
         return true;
     }
     
-    void dfs(vector<string>& board, int n, int queens, int index){
-        if(queens==n){
+    void dfs(vector<string>& board, int n, int queens, int row){
+        if(row==board.size() || queens==n){
             res.push_back(board);
             return;
         }
-        if(index==board.size()){
-            return;
-        }
-        for(int i=index;i<n;i++){
-            for(int j=0;j<n;j++){
-                if(isValid(board,n,i,j)){
-                    board[i][j] = 'Q';
-                    dfs(board,n,queens+1,i+1);
-                    board[i][j] = '.';
-                }
+        for(int j=0;j<n;j++){
+            if(isValid(board,n,row,j)){
+                board[row][j] = 'Q';
+                dfs(board,n,queens+1,row+1);
+                board[row][j] = '.';
             }
         }
-        
     }
     
     vector<vector<string>> solveNQueens(int n) {
