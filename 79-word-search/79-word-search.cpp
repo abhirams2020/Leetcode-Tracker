@@ -2,8 +2,6 @@ class Solution {
 public:
     int m=0, n=0;
     
-    vector<vector<bool>> visited;
-    
     bool dfs(vector<vector<char>> &board, string &word, int index, int i, int j){
         if(index == word.size()){
             return true;
