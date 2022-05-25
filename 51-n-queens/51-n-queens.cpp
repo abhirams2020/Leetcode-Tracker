@@ -1,25 +1,24 @@
 class Solution {
 public:
-    
     vector<vector<string>> res;
     
-    bool isValid(vector<string> &board, int row, int col){
-        // //check row
-        // for(int j=0;j<board[0].size();j++){
-        //     if(board[row][j] == 'Q'){
-        //         return false;
-        //     }
-        // }
-        
-        //check col
-        for(int i=0;i<=row;i++){
-            if(board[i][col] == 'Q'){
+    bool isValid(vector<string>& board, int n, int row, int col){
+        // UP
+        for(int i=0;i<n;i++){
+            if(board[i][col]=='Q'){
                 return false;
             }
         }
         
-        // check left diagonal upwards(\)
-        int i=row,j=col;
+        // SIDE
+        for(int j=0;j<n;j++){
+            if(board[row][j]=='Q'){
+                return false;
+            }
+        }
+        
+        // LEFT DIAGONAL
+        int i = row, j = col;
         while(i>=0 && j>=0){
             if(board[i][j]=='Q'){
                 return false;
@@ -28,36 +27,41 @@ public:
             j--;
         }
         
-        // check right diagonal upwards(/)
-        i=row,j=col;
-        while(i>=0 && j<board[0].size()){
+        // RIGHT DIAGONAL
+        i = row, j = col;
+        while(i>=0 && j<n){
             if(board[i][j]=='Q'){
                 return false;
             }
             i--;
             j++;
         }
-        
         return true;
     }
     
-    void solve(vector<string> &board, int row, int n){
-        if(row==board.size() || n==0){
+    void dfs(vector<string>& board, int n, int queens, int index){
+        if(queens==n){
             res.push_back(board);
             return;
         }
-        for(int j=0;j<board.size();j++){
-            if(isValid(board,row,j)){
-                board[row][j] = 'Q';
-                solve(board,row+1,n-1);
-                board[row][j] = '.';
+        if(index==board.size()){
+            return;
+        }
+        for(int i=index;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(isValid(board,n,i,j)){
+                    board[i][j] = 'Q';
+                    dfs(board,n,queens+1,i+1);
+                    board[i][j] = '.';
+                }
             }
         }
+        
     }
     
     vector<vector<string>> solveNQueens(int n) {
         vector<string> board(n, string(n,'.'));
-        solve(board,0,n);
+        dfs(board,n,0,0);
         return res;
     }
 };
