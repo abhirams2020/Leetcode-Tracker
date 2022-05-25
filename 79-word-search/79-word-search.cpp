@@ -11,23 +11,27 @@ public:
         if(i<0 || j<0 || i>=m || j>=n){
             return false;
         }
-        if(visited[i][j]==true || word[index]!=board[i][j]){
+        if(word[index]!=board[i][j]){
             return false;
         }
-        visited[i][j] = true;
+        
+        // change visited position to # to avoid repeating
+        char temp = board[i][j];
+        board[i][j] = '#';
+        
         bool ans =  dfs(board,word,index+1,i-1,j) ||
                     dfs(board,word,index+1,i+1,j) ||
                     dfs(board,word,index+1,i,j-1) ||
                     dfs(board,word,index+1,i,j+1);
-        visited[i][j] = false;
+        
+        // change back the visited to original value
+        board[i][j] = temp;
         return ans;
     }
     
     bool exist(vector<vector<char>>& board, string word) {
         m = board.size();
         n = board[0].size();
-        
-        visited = vector<vector<bool>> (m, vector<bool>(n));
         
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
