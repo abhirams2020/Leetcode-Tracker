@@ -26,10 +26,11 @@ public:
     
     // ITERATIVE DP
     int climbStairs(int n) {
-        // vector dp shows how many ways to reach 0 at ith position
+        // dp[i] shows how many ways to reach 0 from i
         // if we are in 0, 1 way to reach 0. ie no jump
         // if we are on 1, 1 way to reach 0, ie 1 jump
-        vector<int> dp(n+1);
+        // vector<int> dp(n+1);
+        int dp[n+1];
         dp[0] = 1;
         dp[1] = 1;
         
