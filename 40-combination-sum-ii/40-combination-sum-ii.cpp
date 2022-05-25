@@ -33,22 +33,15 @@ public:
             ans.push_back(ds);
             return;
         }
-        if(index==candidates.size()){
-            return;
-        }
-        if(candidates[index]>target){
+        if(index==candidates.size() || candidates[index]>target){
             return;
         }
         for(int i=index;i<candidates.size();i++){
-            if(candidates[i]>target){
-                break;
+            if(candidates[i]<=target && (i==index || candidates[i]!=candidates[i-1])){
+                ds.push_back(candidates[i]);
+                helper(i+1, target-candidates[i], candidates, ans, ds);
+                ds.pop_back();
             }
-            if(i>index && candidates[i]==candidates[i-1]){
-                continue;
-            }
-            ds.push_back(candidates[i]);
-            helper(i+1, target-candidates[i], candidates, ans, ds);
-            ds.pop_back();
         }
     }
     vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
