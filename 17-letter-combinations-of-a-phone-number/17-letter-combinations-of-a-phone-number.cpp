@@ -5,8 +5,7 @@ public:
     
     void dfs(string digits, string op, int index){
         if(index==digits.length()){
-            if(op.length()!=0)
-                res.push_back(op);
+            res.push_back(op);
             return;
         }
         int curr = digits[index] - '0';
@@ -18,6 +17,9 @@ public:
     }
     
     vector<string> letterCombinations(string digits) {
+        if(digits==""){
+            return res;
+        }
         string op="";
         dfs(digits,op,0);
         return res;
