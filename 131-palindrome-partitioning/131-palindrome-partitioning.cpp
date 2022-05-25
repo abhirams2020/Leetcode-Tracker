@@ -19,7 +19,7 @@ public:
         return true;
     }
     
-    void dfs(string s, vector<string> op, int index){
+    void dfs(string s, vector<string> &op, int index){
         if(index==s.length()){
             res.push_back(op);
         }
