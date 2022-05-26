@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<int> plusOne(vector<int>& digits) {
-        int carry = 0;
         int n = digits.size();
         
         // KEEP MAKING 9 TO 0 TILL WE GET NO LESS THAN 9
