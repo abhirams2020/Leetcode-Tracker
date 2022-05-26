@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int sumOfDigitSq(int n){
+    int sumOfDigitsSquare(int n){
         int sum = 0;
         while(n>0){
             int rem = n%10;
@@ -17,8 +17,8 @@ public:
         unordered_set<int> s;
         while(!s.count(n)){
             s.insert(n);
-            n = sumOfDigitSq(n);
-            if(n == 1){
+            n = sumOfDigitsSquare(n);
+            if(n==1){
                 return true;
             }
         }
