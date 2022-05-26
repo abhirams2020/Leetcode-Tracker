@@ -1,21 +1,21 @@
 class Solution {
 public:
+    
+    // DO TRANSPOSE AND REVERSE TO GET ROTATED MATRIX
     void rotate(vector<vector<int>>& matrix) {
-        
         int n = matrix.size();
-        
-        // transpose the matrix
+        // TRANSPOSE MATRIX
         for(int i=0;i<n;i++){
             for(int j=i;j<n;j++){
-                swap(matrix[i][j],matrix[j][i]);
+                swap(matrix[i][j], matrix[j][i]);
             }
         }
         
-        // flip the matrix in y axis
+        // REVERSE MATRIX VERTICALLY
         for(int i=0;i<n;i++){
             for(int j=0;j<n/2;j++){
-                swap(matrix[i][j],matrix[i][n-1-j]);
+                swap(matrix[i][j], matrix[i][n-j-1]);
             }
-        }   
+        }
     }
 };
