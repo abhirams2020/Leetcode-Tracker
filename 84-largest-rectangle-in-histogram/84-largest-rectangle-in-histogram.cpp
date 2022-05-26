@@ -6,7 +6,7 @@ public:
         vector<int> left(n);
         vector<int> right(n);
         
-        // FINDING NEXT SMALLER TO LEFT
+        // FINDING NEAREST SMALLER TO LEFT
         for(int i=0;i<n;i++){
             while(!s.empty() && heights[s.top()]>=heights[i]){
                 s.pop();
@@ -26,7 +26,7 @@ public:
         // }
         s = {};
         
-        // FINDING NEXT SMALLER TO RIGHT
+        // FINDING NEAREST SMALLER TO RIGHT
         for(int i=n-1;i>=0;i--){
             while(!s.empty() && heights[s.top()]>=heights[i]){
                 s.pop();
@@ -42,8 +42,8 @@ public:
         
         // CALCULATE MAX AREA
         //--------------------
-        // LEFT CONTAINS POSITION OF ELEMENT SMALLER TO LEFT
-        // RIGHT CONTAINS POSITION OF ELEMENT SMALLER TO RIGHT
+        // LEFT CONTAINS POSITION OF NEAREST SMALLER ELEMENT TO LEFT
+        // RIGHT CONTAINS POSITION OF NEAREST SMALLER ELEMENT TO RIGHT
         
         // AREA = heights[i] * (DISTANCE BETWEEN RIGHT AND LEFT)
         // DISTANCE = R-L+1. R is right[i]-1. L is left[i]+1
