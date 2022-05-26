@@ -20,6 +20,7 @@ public:
             s.push(i);
         }
         
+        // CLEAR THE STACK
         // while(!s.empty()){
         //     s.pop();
         // }
@@ -39,6 +40,14 @@ public:
             s.push(i);
         }
         
+        // CALCULATE MAX AREA
+        //--------------------
+        // LEFT CONTAINS POSITION OF ELEMENT SMALLER TO LEFT
+        // RIGHT CONTAINS POSITION OF ELEMENT SMALLER TO RIGHT
+        
+        // AREA = heights[i] * (DISTANCE BETWEEN RIGHT AND LEFT)
+        // DISTANCE = R-L+1. R is right[i]-1. L is left[i]+1
+        // DISTANCE = right[i]-1-left[i]-1+1 = right[i]-left[i]-1
         int maxArea = 0;
         for(int i=0;i<n;i++){
             int currArea = heights[i] * (right[i] - left[i] - 1);
