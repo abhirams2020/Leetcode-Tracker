@@ -4,9 +4,9 @@ public:
         int carry = 0;
         int n = digits.size();
         
+        // KEEP MAKING 9 TO 0 TILL WE GET NO LESS THAN 9
+        // INCREMENT THAT NO BY 1 AND RETURN THE VECTOR
         for(int i=n-1;i>=0;i--){
-            // KEEP MAKING 9 TO 0 TILL WE GET NO LESS THAN 9
-            // INCREMENT THAT NO BY 1 AND RETURN THE VECTOR
             if(digits[i]<9){
                 digits[i]++;
                 return digits;
