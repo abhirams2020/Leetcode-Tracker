@@ -1,9 +1,9 @@
 class Solution {
 public:
-    // vector<int> dpRow;
-    // vector<int> dpCol;
-    // vector<vector<int>> dpGrid;
-    int dpRow[9], dpCol[9], dpGrid[3][3];
+    vector<int> dpRow;
+    vector<int> dpCol;
+    vector<vector<int>> dpGrid;
+    // int dpRow[9], dpCol[9], dpGrid[3][3];
     
     bool isValid(vector<vector<char>>& board, int row, int col){
         if(row==9){
@@ -84,12 +84,12 @@ public:
     }
     
     bool isValidSudoku(vector<vector<char>>& board) {
-        // dpRow.resize(9,-1);
-        // dpCol.resize(9,-1);
-        // dpGrid.resize(3, vector<int>(3,-1));
-        memset(dpRow,-1,sizeof(dpRow));
-        memset(dpCol,-1,sizeof(dpCol));
-        memset(dpGrid,-1,sizeof(dpGrid));
+        dpRow.resize(9,-1);
+        dpCol.resize(9,-1);
+        dpGrid.resize(3, vector<int>(3,-1));
+        // memset(dpRow,-1,sizeof(dpRow));
+        // memset(dpCol,-1,sizeof(dpCol));
+        // memset(dpGrid,-1,sizeof(dpGrid));
         return isValid(board,0,0);
     }
 };
