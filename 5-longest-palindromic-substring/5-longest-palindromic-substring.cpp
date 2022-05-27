@@ -3,7 +3,7 @@ public:
     
     // FIND LARGEST POSSIBLE LENGTH BY EXPANDING FROM L AND R
     // IF s[l]!=s[r] STOP THE LOOP AND RETURN LENGTH
-    int solve(string s, int l, int r){
+    int solve(string &s, int l, int r){
         int maxLen = 1;
         while(l>=0 && r<s.length() && s[l]==s[r]){
             maxLen = r-l+1;
@@ -13,7 +13,7 @@ public:
         return maxLen;
     }
     
-    string longestPalindrome(string s) {
+    string longestPalindrome(string &s) {
         int maxLen = 0;
         int maxLeft = 0;
         
