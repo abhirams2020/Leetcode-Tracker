@@ -1,31 +1,33 @@
 class Solution {
 public:
-
-    int dp[12][10000];
+    // dp stores the min amount of coins to get amount at index
+    vector<vector<int>> dp;
     
-    int solve(vector<int> &coins, int amount, int ind){
-        if(amount == 0){
+    int solve(vector<int>& coins, int amount, int index) {
+        if(amount==0){
             return 0;
         }
-        
-        if(ind==coins.size()){
+        if(index==coins.size()){
             return INT_MAX-1;
         }
-        
-        if(dp[ind][amount]!=-1){
-            return dp[ind][amount];
+        if(dp[index][amount]!=-1){
+            return dp[index][amount];
         }
-        
-        if(coins[ind]<=amount){
-            return dp[ind][amount] = min(1+solve(coins,amount-coins[ind],ind), solve(coins,amount,ind+1));
+        if(coins[index]<=amount){
+            return dp[index][amount]=min(1+solve(coins,amount-coins[index],index), solve(coins,amount,index+1));
         }
-        else {
-            return dp[ind][amount] = solve(coins,amount,ind+1);
-        }
+        return dp[index][amount]=INT_MAX-1;
     }
+    
     int coinChange(vector<int>& coins, int amount) {
-        memset(dp,-1,sizeof(dp));
+        dp.resize(coins.size(), vector<int>(amount+1,-1));
+        
+        sort(coins.begin(),coins.end());
+        
         int ans = solve(coins,amount,0);
-        return (ans == INT_MAX-1)?-1:ans;
+        if(ans == INT_MAX-1){
+            return -1;
+        }
+        return ans;
     }
 };
