@@ -9,11 +9,11 @@ public:
         if(dp[index]!=-1){
             return dp[index];
         }
-        return dp[index] = nums[index] + max(solve(nums,index+2), solve(nums,index+3));
+        return dp[index] = max(solve(nums,index+1), nums[index]+solve(nums,index+2));
     }
     
     int rob(vector<int>& nums) {
         dp.resize(nums.size()+1, -1);
-        return max(solve(nums,0), solve(nums,1));
+        return solve(nums,0);
     }
 };
