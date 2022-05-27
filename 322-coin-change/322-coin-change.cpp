@@ -14,16 +14,15 @@ public:
             return dp[index][amount];
         }
         if(coins[index]<=amount){
-            return dp[index][amount]=min(1+solve(coins,amount-coins[index],index), solve(coins,amount,index+1));
+            return dp[index][amount] = min(1+solve(coins,amount-coins[index],index), solve(coins,amount,index+1));
         }
-        return dp[index][amount]=INT_MAX-1;
+        else{
+            return dp[index][amount] = solve(coins,amount,index+1);
+        }
     }
     
     int coinChange(vector<int>& coins, int amount) {
         dp.resize(coins.size(), vector<int>(amount+1,-1));
-        
-        sort(coins.begin(),coins.end());
-        
         int ans = solve(coins,amount,0);
         if(ans == INT_MAX-1){
             return -1;
