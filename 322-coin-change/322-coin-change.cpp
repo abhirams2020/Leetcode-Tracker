@@ -1,7 +1,8 @@
 class Solution {
 public:
     // dp stores the min amount of coins to get amount at index
-    vector<vector<int>> dp;
+    // vector<vector<int>> dp;
+    int dp[12][10000];
     
     int solve(vector<int>& coins, int amount, int index) {
         if(amount==0){
@@ -22,7 +23,8 @@ public:
     }
     
     int coinChange(vector<int>& coins, int amount) {
-        dp.resize(coins.size(), vector<int>(amount+1,-1));
+        // dp.resize(coins.size(), vector<int>(amount+1,-1));
+        memset(dp,-1,sizeof(dp));
         int ans = solve(coins,amount,0);
         if(ans == INT_MAX-1){
             return -1;
