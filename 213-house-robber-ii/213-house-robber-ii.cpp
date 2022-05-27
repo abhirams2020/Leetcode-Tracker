@@ -1,5 +1,7 @@
 class Solution {
 public:
+    // dp[0] stores result when first element, nums[0] is included
+    // dp[1] stores result wehn last element, nums[n-1] is included
     vector<vector<int>> dp;
     
     int solve(vector<int> &nums, int dpIndex, int index, int end){
@@ -17,7 +19,7 @@ public:
         if(n==1){
             return nums[0];
         }
-        dp.resize(2,vector<int>(n+1,-1));
+        dp.resize(2,vector<int>(n,-1));
         int res = max(solve(nums,0,0,n-2), solve(nums,1,1,n-1));
         return res;
     }
