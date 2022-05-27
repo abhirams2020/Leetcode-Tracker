@@ -20,7 +20,9 @@ public:
             return nums[0];
         }
         dp.resize(2,vector<int>(n,-1));
-        int res = max(solve(nums,0,0,n-2), solve(nums,1,1,n-1));
-        return res;
+        // if nums[0] and nums[n-1] cannot be together
+        // so we pass 2 different start and end
+        // one is without first element, other is without last element
+        return max(solve(nums,0,0,n-2), solve(nums,1,1,n-1));
     }
 };
