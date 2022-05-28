@@ -1,40 +1,38 @@
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& arr) {
-        vector<vector<int>> res;
-        sort(arr.begin(),arr.end());
-        int n = arr.size();
-        for(int i=0 ; i<n && arr[i]<=0 ; i++){
-            if(i!=0 && (arr[i]==arr[i-1])){ // i will proceed only at non duplicate positions
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        vector<vector<int>> ans;
+        
+        int n = nums.size();
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<n-1;i++){
+            if(i!=0 && nums[i]==nums[i-1]){
                 continue;
             }
-            int sum = -arr[i];
-            int lo = i+1;
-            int hi = n-1;
-            while(lo<hi){
-                if(arr[lo]+arr[hi]==sum){
-                    vector<int> temp = {arr[i],arr[lo],arr[hi]};
-                    res.push_back(temp);
-                    int curr_lo = lo;
-                    int curr_hi = hi;
-                    // * removing duplicate trick *
-                    // move lo to right till it reaches a larger value
-                    // move hi to left till it reaches a smaller value
-                    while(lo<=n-1 && arr[lo]==arr[curr_lo]){
-                        lo++;
+            int left = i+1;
+            int right = n-1;
+            int target = -nums[i];
+            while(left<right){
+                if(nums[left]+nums[right]==target){
+                    vector<int> tempans = {nums[i],nums[left],nums[right]};
+                    ans.push_back(tempans);
+                    int curr_left = left, curr_right = right;
+                    while(left<n && nums[curr_left]==nums[left]){
+                        left++;
                     }
-                    while(hi>=i+1 && arr[hi]==arr[curr_hi]){
-                        hi--;
+                    while(right>=i+1 && nums[curr_right]==nums[right]){
+                        right--;
                     }
                 }
-                else if(arr[lo]+arr[hi]<sum){ // if arr[lo] + arr[hi] < sum, means lo needs to increase
-                    lo++;
+                else if(nums[left]+nums[right]<target){
+                    left++;
                 }
-                else {  // if arr[lo] + arr[hi] > sum, means hi needs to decrease
-                    hi--;
+                else {
+                    right--;
                 }
             }
         }
-        return res;
+        
+        return ans;
     }
 };
