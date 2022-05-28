@@ -1,27 +1,26 @@
 class Solution {
 public:
     int maxArea(vector<int>& height) {
-        int n=height.size();
-        int maxVol = INT_MIN;
-        int l=0,r=n-1;
-        while(l<r) {
-            // area is width*heighth. we take min of left and right height.
-            int vol = min(height[l],height[r]) * (r-l);
-            maxVol = max(maxVol, vol);
+        int n = height.size();
+        int left = 0, right = n-1;
+        int maxVol = 0;
+        
+        while(left<right){
+            int currVol = min(height[left],height[right]) * (right-left);
+            maxVol = max(currVol, maxVol);
             
-            // we move the lower height to get the max vol
-            // if both height same, the max with h is that. so move l and r.
-            if(height[l]<height[r]){
-                l++;
+            if(height[left]==height[right]){
+                left++;
+                right--;
             }
-            else if(height[l]>height[r]){
-                r--;
+            else if(height[left]<height[right]){
+                left++;
             }
             else {
-                l++;
-                r--;
+                right--;
             }
         }
+        
         return maxVol;
     }
 };
