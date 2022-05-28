@@ -10,7 +10,7 @@ class Solution{
 public:
     int minTime(int S1, int S2, int N){
         // code here
-        int minVal = INT_MAX;
+        int minVal = min(S1,S2)*N;
         for(int i=0;i<=N;i++){
             minVal = min(minVal, max(S1*i, S2*(N-i)));
         }
