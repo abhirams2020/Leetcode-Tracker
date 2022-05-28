@@ -6,9 +6,9 @@ public:
         unordered_map<string, vector<string>> mp;
         
         for(int i=0;i<strs.size();i++){
-            string tempstr = strs[i];
-            sort(tempstr.begin(), tempstr.end());
-            mp[tempstr].push_back(strs[i]);
+            string s = strs[i];
+            sort(s.begin(), s.end());
+            mp[s].push_back(strs[i]);
         }
         
         for(auto i:mp){
