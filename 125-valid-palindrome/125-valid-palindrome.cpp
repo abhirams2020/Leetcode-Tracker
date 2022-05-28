@@ -10,7 +10,7 @@ public:
             while(right>=0 && !isalnum(s[right])){
                 right--;
             }
-            if(left>=0 && right<n && left<=right && tolower(s[left])!=tolower(s[right])){
+            if(left<=right && tolower(s[left])!=tolower(s[right])){
                 return false;
             }
             left++;
