@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int characterReplacement(string s, int k) {
+    int characterReplacement(string &s, int k) {
         int maxLen = 1;
         char maxChar = s[0];
         vector<int> mp(256,0);
@@ -21,7 +21,6 @@ public:
             // we don't need loop to update maxChar since maxcount in the window is count[maxChar].
             // when we move l to right, the maximum of counts remains less than the maxcount.
             while((r-l+1)-mp[maxChar] > k){
-                cout<<s[l]<<endl;
                 mp[s[l]]--;
                 l++;
             }
