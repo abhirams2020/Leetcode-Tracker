@@ -5,7 +5,11 @@ public:
         
         int n = nums.size();
         sort(nums.begin(),nums.end());
-        for(int i=0;i<n-1;i++){
+        
+        // nums[i] should be less than or equal to 0 to get a valid result
+        // if nums[i] is positive, numbers to its right is also positive and cannot give 0 sum
+        for(int i=0;i<n-1 && nums[i]<=0;i++){
+            // i will proceed only at non duplicate positions
             if(i!=0 && nums[i]==nums[i-1]){
                 continue;
             }
@@ -16,6 +20,10 @@ public:
                 if(nums[left]+nums[right]==target){
                     vector<int> tempans = {nums[i],nums[left],nums[right]};
                     ans.push_back(tempans);
+
+                    // * removing duplicate trick *
+                    // move left ptr to right till it reaches a larger value
+                    // move right ptr to left till it reaches a smaller value
                     int curr_left = left, curr_right = right;
                     while(left<n && nums[curr_left]==nums[left]){
                         left++;
