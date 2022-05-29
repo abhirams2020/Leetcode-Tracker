@@ -2,7 +2,7 @@ class Solution {
 public:
     // O(N) time complexity using unordered_map
     
-    int countWords(string s){
+    int countWords(string &s){
         int count = 0;
         for(auto ch:s){
             if(ch==' '){
