@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // USING MONOTONIC STACK
     vector<int> dailyTemperatures(vector<int>& temperatures) {
         int n = temperatures.size();
         stack<int> st;
