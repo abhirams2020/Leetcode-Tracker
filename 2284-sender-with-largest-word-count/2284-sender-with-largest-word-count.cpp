@@ -1,6 +1,6 @@
 class Solution {
 public:
-    // O(N) time complexity
+    // O(N) time complexity using unordered_map
     
     int countWords(string s){
         int count = 0;
@@ -32,7 +32,7 @@ public:
         return ans;
     }
     
-//     // O(N) time complexity
+//     // O(NlogN) time complexity using map
     
 //     int countWords(string s){
 //         int count = 0;
