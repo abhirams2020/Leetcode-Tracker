@@ -1,15 +1,32 @@
 class Solution {
 public:
     int singleNonDuplicate(vector<int>& nums) {
+        if(nums.size()==1){
+            return nums[0];
+        }
         int left=0, right=nums.size()-1;
         while(left<=right){
-            while(left<nums.size()-1 && nums[left]==nums[left+1]){
-                left+=2;
+            int mid = (left+right)/2;
+            cout<<mid<<endl;
+            if(mid>0 && nums[mid]==nums[mid-1]){
+                if((left-mid+1)%2==0){
+                    left = mid+1;
+                }
+                else {
+                    right = mid;
+                }
             }
-            while(right>=1 && nums[right]==nums[right-1]){
-                right-=2;
+            else if(mid<nums.size()-1 && nums[mid]==nums[mid+1]){
+                if((mid-right+1)%2==0){
+                    right = mid-1;
+                }
+                else {
+                    left = mid;
+                }                
             }
-            return nums[left];
+            else {
+                return nums[mid];
+            }
         }
         return 0;
     }
