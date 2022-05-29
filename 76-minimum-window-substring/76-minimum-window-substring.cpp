@@ -19,33 +19,34 @@ public:
             table[character]++;
         }
 
-        int start = 0;
-        int end = 0;
+        int left = 0;
+        int right = 0;
         int counter = t.size();
-        int startMin = 0;
+        int minLeft = 0;
         int minLen = INT_MAX;
 
         // Here we use the 2 pointer approach sliding window and rolling hash
-        while(end < searchString.size()) {
-
-            if(table[searchString[end]] > 0) {
+        while(right < searchString.size()) {
+            // counter stores no of characters in string t yet to be found in window
+            if(table[searchString[right]] > 0) {
                 counter--;
             }
-            table[searchString[end]]--;
-            end++;
+            table[searchString[right]]--;
 
             while(counter == 0) {
-                if(end - start < minLen) {
-                    startMin = start;
-                    minLen = end - start;
+                if(right - left + 1 < minLen) {
+                    minLeft = left;
+                    minLen = right - left + 1;
                 }
     
-                table[searchString[start]]++;
-                if(table[searchString[start]] > 0) {
+                table[searchString[left]]++;
+                if(table[searchString[left]] > 0) {
                     counter++;
                 }
-                start++;
+                left++;
             }
+            
+            right++;
         }
 
         // Case when no substring satisfies
@@ -53,6 +54,53 @@ public:
           return "";
         }
 
-        return searchString.substr(startMin, minLen);
+        return searchString.substr(minLeft, minLen);
     }
+    
+//     // USING UNORDERED_MAP
+//     string minWindow(string searchString, string t) {
+
+//         // Our hashtable of characters filled with occurences in our string
+//         // vector<int> table(128, 0);
+//         unordered_map<char,int> table;
+
+//         // Store the frequency of characters in string t
+//         for(auto character : t) {
+//             table[character]++;
+//         }
+//         int start = 0;
+//         int end = 0;
+//         int counter = t.size();
+//         int startMin = 0;
+//         int minimum = INT_MAX;
+//         // Here we use the 2 pointer approach
+//         while(end < searchString.size()) {
+//             if(table.count(searchString[end])){
+//                 if(table[searchString[end]] > 0) {
+//                     counter--;
+//                 }
+//                 table[searchString[end]]--;
+//             }
+//             end++;
+//             while(counter == 0) {
+//                 if(end - start < minimum) {
+//                     startMin = start;
+//                     minimum = end - start;
+//                 }
+//                 if(table.count(searchString[start])){
+//                     table[searchString[start]]++;
+//                     if(table[searchString[start]] > 0) {
+//                         counter++;
+//                     }
+//                 }
+//                 start++;
+//             }
+//         }
+    
+//         // Case when no substring satisfies
+//         if(minimum == INT_MAX) {
+//           return "";
+//         }
+//         return searchString.substr(startMin, minimum);
+//     }
 };
