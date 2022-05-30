@@ -33,20 +33,21 @@ public:
     
     // using rootIndex to indicate pos of root index in preorder vector
     // rootIndex follows preorder traversal and increases after each node is visited
-    TreeNode* build(vector<int>& preorder, vector<int>& inorder, int &rootIndex, int inleft, int inright){
+    TreeNode* build(vector<int>& preorder, vector<int>& inorder, int &preorderIndex, int inleft, int inright){
         if(inleft>inright){
             return NULL;
         }
-        int curr = preorder[rootIndex];
+        int curr = preorder[preorderIndex];
         TreeNode* newnode = new TreeNode(curr);
         
         int index=inleft;
         while(inorder[index]!=curr){
             index++;
         }
-        rootIndex++;
-        newnode->left = build(preorder, inorder, rootIndex, inleft, index-1);
-        newnode->right = build(preorder, inorder, rootIndex, index+1, inright);
+        // after visiting each node in preorder traversal, increment preorderIndex
+        preorderIndex++;
+        newnode->left = build(preorder, inorder, preorderIndex, inleft, index-1);
+        newnode->right = build(preorder, inorder, preorderIndex, index+1, inright);
         return newnode;
     }
 
@@ -57,7 +58,7 @@ public:
     // Similar process for finding root->right. Then return root.
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         int n = preorder.size();
-        int rootIndex = 0;
-        return build(preorder, inorder, rootIndex, 0, n-1);
+        int preorderIndex = 0;
+        return build(preorder, inorder, preorderIndex, 0, n-1);
     }
 };
