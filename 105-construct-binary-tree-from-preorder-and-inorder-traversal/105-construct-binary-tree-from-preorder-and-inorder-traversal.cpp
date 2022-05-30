@@ -11,27 +11,26 @@
  */
 class Solution {
 public:
-    TreeNode* solve(vector<int>& preorder, vector<int>& inorder, int preleft, int preright, int inleft, int inright){
+    TreeNode* build(vector<int>& preorder, vector<int>& inorder, int &rootIndex, int inleft, int inright){
         if(inleft>inright){
             return NULL;
         }
-        int curr = preorder[preleft];
+        int curr = preorder[rootIndex];
         TreeNode* newnode = new TreeNode(curr);
-        int index;
-        for(int i=inleft;i<=inright;i++){
-            if(inorder[i]==curr){
-                index=i;
-                break;
-            }
+        
+        int index=inleft;
+        while(inorder[index]!=curr){
+            index++;
         }
-        int leftTreeSize = index-inleft;
-        int rightTreeSize = inright-index;
-        newnode->left = solve(preorder, inorder, preleft+1, preleft+leftTreeSize, inleft, index-1);
-        newnode->right = solve(preorder, inorder, preleft+1+leftTreeSize, preright, index+1, inright);
+        rootIndex++;
+        newnode->left = build(preorder, inorder, rootIndex, inleft, index-1);
+        newnode->right = build(preorder, inorder, rootIndex, index+1, inright);
         return newnode;
     }
     
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        return solve(preorder, inorder, 0, preorder.size()-1, 0, preorder.size()-1);
+        int n = preorder.size();
+        int rootIndex = 0;
+        return build(preorder, inorder, rootIndex, 0, n-1);
     }
 };
