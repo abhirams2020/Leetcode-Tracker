@@ -10,9 +10,12 @@
  * };
  */
 class Solution {
+private:
+    unordered_map<int,int> findIndexInorder;
 public:
     
     // // using preleft and preright to indicate start and end index of preorder vector
+    
     // TreeNode* build(vector<int>& preorder, vector<int>& inorder, int preleft, int preright, int inleft, int inright){
     //     if(inleft>inright){
     //         return NULL;
@@ -40,10 +43,7 @@ public:
         int curr = preorder[preorderIndex];
         TreeNode* newnode = new TreeNode(curr);
         
-        int index=inleft;
-        while(inorder[index]!=curr){
-            index++;
-        }
+        int index=findIndexInorder[curr];
         // after visiting each node in preorder traversal, increment preorderIndex
         preorderIndex++;
         newnode->left = build(preorder, inorder, preorderIndex, inleft, index-1);
@@ -58,6 +58,9 @@ public:
     // Similar process for finding root->right. Then return root.
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         int n = preorder.size();
+        for(int i=0;i<n;i++){
+            findIndexInorder[inorder[i]] = i;
+        }
         int preorderIndex = 0;
         return build(preorder, inorder, preorderIndex, 0, n-1);
     }
