@@ -15,6 +15,7 @@ public:
             return NULL;
         }
         ListNode *slow=head, *fast=head;
+        // move fast n times.
         for(int i=0;i<n;i++){
             fast = fast->next;
         }
@@ -22,6 +23,8 @@ public:
         if(fast == NULL){
             return head->next;
         }
+        // when fast has been moved n times, move both slow and fast
+        // when fast reaches end of LL, slow will reach previous of node to be deleted.
         while(fast && fast->next){
             fast = fast->next;
             slow = slow->next;
