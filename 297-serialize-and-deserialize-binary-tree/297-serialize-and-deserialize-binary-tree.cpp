@@ -28,9 +28,7 @@ public:
     }
     
     TreeNode* decode(queue<string> &q){
-        if(q.empty()){
-            return NULL;
-        }
+        // q will never be empty. if tree is [], q = {"NULL"}
         string rootVal = q.front();
         q.pop();
         if(rootVal=="NULL"){
