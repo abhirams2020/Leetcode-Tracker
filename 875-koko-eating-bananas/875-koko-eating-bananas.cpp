@@ -35,6 +35,8 @@ public:
             for(auto i:piles){
                 time += ceil((double)i/midSpeed);
             }
+            // if time taken with midSpeed <=h, move maxSpeed to midSpeed. Not midSpeed-1 since midSpeed is valid ans.
+            // if time taken with midSpeed > h, move minSpeed to midSpeed + 1 since midSpeed is invalid ans.
             if(time<=h){
                 maxSpeed = midSpeed;
             }
