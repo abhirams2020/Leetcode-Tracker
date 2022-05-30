@@ -7,20 +7,23 @@ public:
             if(nums[mid]==target){
                 return mid;
             }
+            // if left side of mid is sorted
             else if(nums[left]<=nums[mid]){
-                if(target < nums[left] || target > nums[mid]){
-                    left = mid+1;
-                }
-                else {
+                // if target not in left side of mid
+                if(target >= nums[left] && target <= nums[mid]){
                     right = mid;
                 }
+                else {
+                    left = mid + 1;
+                }
             }
+            // if right side of mid is sorted
             else if(nums[mid]<=nums[right]){
-                if(target < nums[mid] || target > nums[right]){
-                    right = mid-1;
+                if(target >= nums[mid] && target <= nums[right]){
+                    left = mid;
                 }
                 else {
-                    left = mid;
+                    right = mid - 1;
                 }
             }
         }
