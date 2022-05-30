@@ -37,9 +37,9 @@ public:
         TreeNode* root = new TreeNode();
         root->val = stoi(rootVal);
         root->left = decode(q);
+        // decode(q) above will pop all values to left of root
         root->right = decode(q);
         return root;
-        
     }
     
     // Decodes your encoded data to tree.
