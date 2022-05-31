@@ -1,7 +1,7 @@
 class Solution {
 public:
     // there are n+1 numbers in range [1,n].
-    // when a number is found. make nums[number] to negative
+    // when a number is found. make nums[abs(number)] to negative
     // negative at index i indicates i was found before
     int findDuplicate(vector<int>& nums) {
         for(int i=0;i<nums.size();i++){
