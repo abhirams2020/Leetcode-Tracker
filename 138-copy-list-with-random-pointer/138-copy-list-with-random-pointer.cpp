@@ -17,6 +17,7 @@ public:
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
+        // create a mapping of old node to new nodes
         map<Node*,Node*> mp;
         Node* curr = head;
         while(curr){
@@ -25,9 +26,13 @@ public:
             curr = curr->next;
         }
         
-        for(auto node:mp){
-            (node.second)->next = mp[(node.first)->next];
-            (node.second)->random = mp[(node.first)->random];
+        // assign next and random similar to original list
+        curr = head;
+        mp[NULL] = NULL;
+        while(curr){
+            mp[curr]->next = mp[curr->next];
+            mp[curr]->random = mp[curr->random];
+            curr = curr->next;
         }
         
         return mp[head];
