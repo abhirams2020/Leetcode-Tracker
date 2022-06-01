@@ -2,7 +2,7 @@ class Solution {
 public:
     vector<int> dp;
     
-    bool isValid(string s, int start, int end){
+    bool isValid(string &s, int start, int end){
         string str = s.substr(start,end-start+1);
         // valid is 1,2,3...9, 10,11,...,19, 20,21,...,26
         if(str[0]=='0'){
@@ -14,7 +14,7 @@ public:
         return true;
     }
     
-    int solve(string s, int start, int end){
+    int solve(string &s, int start, int end){
         if(start>end){
             return 1;
         }
