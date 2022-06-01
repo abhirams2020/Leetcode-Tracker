@@ -23,9 +23,7 @@ public:
             moveToFront(key,mp[key]->second);
             return mp[key]->second;
         }
-        else {
-            return -1;
-        }
+        return -1;
     }
     
     void put(int key, int value) {
@@ -34,12 +32,14 @@ public:
             moveToFront(key,value);
         }
         else {
-            if(mp.size()==size){
+            if(size == mp.size()){
                 // if list is full, remove least recently used element
                 mp.erase(li.back().first);
                 li.pop_back();
             }
             li.push_front({key,value});
+            // begin() - address of front element
+            // front() - value of front element
             mp[key] = li.begin();
         }
     }
