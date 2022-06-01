@@ -7,7 +7,7 @@ private:
     list<pair<int,int>> li;
 public:
     // when an element in list is accessed, call used fn to move it to front
-    void used(int key, int value){
+    void moveToFront(int key, int value){
         li.erase(mp[key]);
         li.push_front({key,value});
         mp[key] = li.begin();
@@ -20,7 +20,7 @@ public:
     int get(int key) {
         if(mp.count(key)){
             // if mp contains key, update the list and return mp value
-            used(key,mp[key]->second);
+            moveToFront(key,mp[key]->second);
             return mp[key]->second;
         }
         else {
@@ -31,7 +31,7 @@ public:
     void put(int key, int value) {
         if(mp.count(key)){
             // if key found in mp, update the list and mp value
-            used(key,value);
+            moveToFront(key,value);
         }
         else {
             if(mp.size()==size){
@@ -44,6 +44,29 @@ public:
         }
     }
 };
+
+/*
+Algorithm Outline:
+
+LRUCache()
+1. key -> (addr, value)
+2. List, will contain keys
+3. cap=capacity
+
+Get
+1. if found, movetofirst for key, return. Else -1
+
+Put
+1. if exist, update.
+2. else add
+3. move to first
+4. if >capacity, remove last in list i.e. LRU
+
+Move to first
+1. erase element
+2. add to first
+3. store first addr in ht
+ */
 
 /**
  * Your LRUCache object will be instantiated and called as such:
