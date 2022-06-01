@@ -113,6 +113,7 @@ class Solution
         // queue stores address of node and its distance from root
         queue<pair<Node*, int>> q;
         q.push({root,0});
+        // perform level order traversal on tree
         while(!q.empty()){
             int n = q.size();
             for(int i=0;i<n;i++){
