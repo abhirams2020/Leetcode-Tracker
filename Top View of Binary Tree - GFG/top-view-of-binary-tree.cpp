@@ -105,11 +105,12 @@ class Solution
     //Function to return a list of nodes visible from the top view 
     //from left to right in Binary Tree.
     
-    
     vector<int> topView(Node *root)
     {
         vector<int> res;
+        // map stores distance from root and value corresponding to it
         map<int,int> mp;
+        // queue stores address of node and its distance from root
         queue<pair<Node*, int>> q;
         q.push({root,0});
         while(!q.empty()){
@@ -118,6 +119,7 @@ class Solution
                 Node* curr = q.front().first;
                 int dist = q.front().second;
                 q.pop();
+                // first occurence of dist in map will be top view at that dist
                 if(mp.count(dist)==0){
                     mp[dist] = curr->data;
                 }
@@ -127,6 +129,7 @@ class Solution
                     q.push({curr->right, dist+1});
             }
         }
+        // since map is sorted, it sorts by distance from root
         for(auto i:mp){
             res.push_back(i.second);
         }
