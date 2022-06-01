@@ -4,6 +4,7 @@ public:
         int ans = 0;
         while(x){
             int digit = x%10;
+            cout<<ans<<" "<<digit<<endl;
             if(ans > INT_MAX/10 || (ans==INT_MAX/10 && digit >= INT_MAX%10)){
                 return 0;
             }
