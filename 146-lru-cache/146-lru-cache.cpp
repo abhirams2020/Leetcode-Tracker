@@ -16,6 +16,7 @@ public:
     
     int size;
     unordered_map<int,Node*> mp;
+    // front->next and back->prev gives front and back elements in list
     Node* front = new Node(0,0);
     Node* back = new Node(0,0);
     
@@ -54,6 +55,7 @@ public:
             removeNode(mp[key]);
         }
         else if(mp.size() == size){
+            // remove least recently used element
             removeNode(back->prev);
         }
         Node* curr = new Node(key,value);
