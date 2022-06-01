@@ -1,28 +1,37 @@
 class Solution {
 public:
+    vector<int> dp;
     
-    int dp[101];
-        
-    int solve(string& s, int idx){
-        if(idx == s.length()){
+    bool isValid(string s, int start, int end){
+        string str = s.substr(start,end-start+1);
+        // valid is 1,2,3...9, 10,11,...,19, 20,21,...,26
+        if(str[0]=='0'){
+            return false;
+        }
+        if(str.length()==2 && (str[0]>='3' || (str[0]=='2' && str[1]>'6'))){
+            return false;
+        }
+        return true;
+    }
+    
+    int solve(string s, int start, int end){
+        if(start>end){
             return 1;
         }
-        if(s[idx]=='0'){
-            return 0; // sub string starting with 0 is not a valid encoding
+        if(dp[start]!=-1){
+            return dp[start];
         }
-        if(dp[idx]!=-1){
-            return dp[idx];
+        int count = 0;
+        for(int i=start;i<=end && i<=start+1;i++){
+            if(isValid(s,start,i)){
+                count += solve(s,i+1,end);
+            }
         }
-        
-        int ans = 0;
-        ans += solve(s, idx+1);
-        if(idx < s.length()-1 && (s[idx]=='1' || (s[idx]=='2' && s[idx+1]<='6'))){
-            ans += solve(s, idx+2);
-        }
-        return dp[idx] = ans;
+        return dp[start] = count;
     }
+    
     int numDecodings(string s) {
-        memset(dp,-1,sizeof(dp));
-        return solve(s,0);
+        dp.resize(s.length()+1, -1);
+        return solve(s,0,s.length()-1);
     }
 };
