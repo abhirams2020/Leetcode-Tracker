@@ -12,7 +12,7 @@ public:
     }
     
     // search highest value less than or equal to timestamp
-    string searchVal(vector<pair<int,string>> &arr, int timestamp){
+    string searchVal(vector<pair<int,string>> &arr, int &timestamp){
         int l = 0, r = arr.size()-1;
         int last = -1; // storing last occurrance of valid value
         while(l<=r){
