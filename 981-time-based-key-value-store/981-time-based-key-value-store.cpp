@@ -1,6 +1,7 @@
 class TimeMap {
 public:
-    unordered_map<string, vector<pair<int,string>>> mp;
+    // since time is increasing order, store time and value in vector
+    unordered_map<string, vector<pair<int,string>>> mp; // key, {timestamp, value}
     
     TimeMap() {
         
@@ -32,7 +33,7 @@ public:
     }
     
     string get(string key, int timestamp) {
-        if(mp.count(key)==0){
+        if(mp.find(key)==mp.end()){
             return "";
         }
         return searchVal(mp[key],timestamp);
