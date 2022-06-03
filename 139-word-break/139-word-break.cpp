@@ -12,11 +12,8 @@ public:
             return dp[start];
         }
         for(int i=start;i<=end;i++){
-            if(words.count(s.substr(start, i-start+1))){
-                dp[start] = solve(s,i+1,end);
-                if(dp[start]==true){
-                    return true;
-                }
+            if(words.count(s.substr(start,i-start+1)) && solve(s,i+1,end)){
+                return dp[start] = true;
             }
         }
         return dp[start] = false;
