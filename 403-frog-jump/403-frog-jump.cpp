@@ -19,7 +19,7 @@ public:
     }
     
     bool canCross(vector<int>& stones) {
-        dp.resize(1+stones.size(), vector<int> (1+stones.size(), -1));
+        dp.resize(stones.size(), vector<int> (stones.size(), -1));
         // initial jump should be from 0 to 1.
         int jump = 1;
         for(int i=0;i<stones.size();i++){
