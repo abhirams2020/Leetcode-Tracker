@@ -1,31 +1,32 @@
 class Solution {
 public:
+    unordered_set<string> words;
     
     int dp[301];
     
-    bool solve(string &s, int l, unordered_set<string> &dict){
-        if(l==s.length()){
+    bool solve(string s, int start, int end){
+        if(start>end){
             return true;
         }
-        if(dp[l]!=-1){
-            return dp[l];
+        if(dp[start]!=-1){
+            return dp[start];
         }
-        string str;
-        for(int i=l;i<s.length();i++){
-            str.push_back(s[i]);
-            if(dict.count(str) && solve(s,i+1,dict)){
-                return dp[i] = true;
+        for(int i=start;i<=end;i++){
+            if(words.count(s.substr(start, i-start+1))){
+                dp[start] = solve(s,i+1,end);
+                if(dp[start]==true){
+                    return true;
+                }
             }
         }
-        return dp[l] =false;
+        return dp[start] = false;
     }
     
     bool wordBreak(string s, vector<string>& wordDict) {
         memset(dp,-1,sizeof(dp));
-        unordered_set<string> dict;
         for(auto i:wordDict){
-            dict.insert(i);
+            words.insert(i);
         }
-        return solve(s,0,dict);
+        return solve(s, 0, s.length()-1);
     }
 };
