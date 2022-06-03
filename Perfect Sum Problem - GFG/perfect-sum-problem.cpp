@@ -10,13 +10,13 @@ class Solution{
 	int mod = 1e9+7;
 	
 	int countSum(int arr[], int n, int sum){
-	    if(n==1){
-	        if(sum==0 && arr[0]==0){
-	            return 2;
-	        }
-	        if(sum==0 || arr[0]==sum){
-	            return 1;
-	        }
+	    if(n>0 && arr[n-1]==0){
+	        return 2*countSum(arr,n-1,sum);
+	    }
+	    if(sum==0){
+	        return 1;
+	    }
+	    if(n==0){
 	        return 0;
 	    }
 	    if(dp[n][sum]!=-1){
