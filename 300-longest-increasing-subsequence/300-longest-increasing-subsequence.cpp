@@ -45,6 +45,7 @@ public:
         if(dp[prev_i+1]!=-1){
             return dp[prev_i+1];
         }
+        // we can include curr index or not include and check other right elements
         int include = 0, notInclude = 0;
         if(prev_i==-1 || nums[index]>nums[prev_i]){
             include = 1 + solve(nums,index+1,index);
