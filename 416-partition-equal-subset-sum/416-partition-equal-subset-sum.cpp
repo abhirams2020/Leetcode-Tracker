@@ -30,7 +30,7 @@ public:
             return false;
         }
         // we have to find subsequence with sum = sum/2
-        dp.resize(201, vector<int> (1+(sum/2), -1));
+        dp.resize(nums.size(), vector<int> (1+(sum/2), -1));
         return targetSum(nums, 0, sum/2);
     }
 };
