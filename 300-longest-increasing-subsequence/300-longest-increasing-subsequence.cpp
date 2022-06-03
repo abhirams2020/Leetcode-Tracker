@@ -34,7 +34,9 @@ public:
     
     // For a given prev index, every LIS to right is considered. So only prev index enough for dp
     // We should return dp[0] & prev index = -1, which considers elements from 0 to n-1.
-    vector<int> dp;
+    
+    // vector<int> dp;
+    int dp[2501];
     
     int solve(vector<int> &nums, int index, int prev_i){
         if(index==nums.size()){
@@ -52,7 +54,8 @@ public:
     }
     
     int lengthOfLIS(vector<int>& nums) {
-        dp.resize(1+nums.size(),-1);
+        // dp.resize(1+nums.size(),-1);
+        memset(dp,-1,sizeof(dp));
         int ans =  solve(nums,0,-1);
         return ans;
     }
