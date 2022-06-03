@@ -9,6 +9,8 @@ public:
         // update curr pos
         dist = dist+jump;
         // if curr pos is not valid or jump is 0
+        // jump is 0 means, its second time we see dist in the function
+        // to avoid repetition, return false 
         if(mp.count(dist)==0 || jump==0){
             return false;
         }
