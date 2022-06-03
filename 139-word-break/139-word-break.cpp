@@ -4,7 +4,7 @@ public:
     
     int dp[301];
     
-    bool solve(string s, int start, int end){
+    bool solve(string &s, int start, int end){
         if(start>end){
             return true;
         }
