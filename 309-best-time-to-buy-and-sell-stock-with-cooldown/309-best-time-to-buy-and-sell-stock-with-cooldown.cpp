@@ -6,6 +6,7 @@ public:
         if(i>=prices.size()){
             return 0;
         }
+        // if we are starting to buy or currMin < currPrice, set minIndex to i
         if(minIndex==-1 || prices[i] < prices[minIndex]){
             minIndex = i;
         }
@@ -13,7 +14,7 @@ public:
             return dp[i][minIndex];
         }
         int currProfit = prices[i]-prices[minIndex];
-        // if profit is there, include and reset minimum or not include it and return the max of both.
+        // if profit is there, sell stock and reset minimum or not sell stock. Return the max of both.
         if(currProfit > 0){
             return dp[i][minIndex] = max(currProfit + solve(prices,i+2,-1), solve(prices,i+1,minIndex));
         }
@@ -24,7 +25,6 @@ public:
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
         dp.resize(n+1, vector<int>(n+1,-1));
-        int minIndex = -1;
         return solve(prices, 0, -1);
     }
 };
