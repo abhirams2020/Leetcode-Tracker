@@ -6,8 +6,9 @@ public:
     unordered_map<int,int> mp;
     
     bool solve(vector<int> &stones, int dist, int jump){
-        // if curr pos is not valid or jump is 0
+        // update curr pos
         dist = dist+jump;
+        // if curr pos is not valid or jump is 0
         if(mp.count(dist)==0 || jump==0){
             return false;
         }
