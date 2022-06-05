@@ -14,15 +14,11 @@ public:
     }
     
     int deleteText(int k) {
-        if(k>=leftStr.size()){
-            int len = leftStr.size();
-            leftStr.clear();
-            return len;
-        }
-        for(int i=0;i<k;i++){
+        int size = min(k,int(leftStr.size()));
+        for(int i=0;i<size;i++){
             leftStr.pop_back();
         }
-        return k;
+        return size;
     }
     
     string cursorLeft(int k) {
