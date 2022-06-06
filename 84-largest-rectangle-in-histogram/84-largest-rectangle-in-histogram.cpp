@@ -10,6 +10,7 @@ public:
         
         // FINDING NEAREST SMALLER TO LEFT
         for(int i=1;i<n;i++){
+            // prev is index after which height will be atleast heights[i]
             int prev = i-1;
             while(prev>=0 && heights[prev]>=heights[i]){
                 prev = left[prev];
@@ -19,11 +20,12 @@ public:
         
         // FINDING NEAREST SMALLER TO RIGHT
         for(int i=n-2;i>=0;i--){
-            int prev = i+1;
-            while(prev<n && heights[prev]>=heights[i]){
-                prev = right[prev];
+            // next is index before which height will be atleast heights[i]
+            int next = i+1;
+            while(next<n && heights[next]>=heights[i]){
+                next = right[next];
             }
-            right[i] = prev;
+            right[i] = next;
         }
         
         // CALCULATE MAX AREA
