@@ -9,52 +9,6 @@ public:
     }
 };
 
-// class Trie {
-// public:
-//     TrieNode* root;
-    
-//     Trie() {
-//         root = new TrieNode();    
-//     }
-    
-//     void insert(string word) {
-//         TrieNode* curr = root;
-//         for(auto i:word){
-//             if(curr->child[i-'a'] == NULL){
-//                 curr->child[i-'a'] = new TrieNode();
-//             }
-//             curr = curr->child[i-'a'];
-//         }
-//         curr->isEnd = true;
-//     }
-    
-//     bool search(string word) {
-//         TrieNode* curr = root;
-//         int i = 0;
-//         while(curr->isEnd==false){
-//             if(curr->child[word[i]-'a'] == NULL){
-//                 return false;
-//             }
-//             curr = curr->child[word[i]-'a'];
-//             i++;
-//         }
-//         return true;
-//     }
-    
-//     bool startsWith(string prefix) {
-//         TrieNode* curr = root;
-//         int i = 0;
-//         while(i!=prefix.length()){
-//             if(curr->child[prefix[i]-'a'] == NULL){
-//                 return false;
-//             }
-//             curr = curr->child[prefix[i]-'a'];
-//             i++;
-//         }
-//         return true;        
-//     }
-// };
-
 class Trie {
 private:
     TrieNode* root;
@@ -108,6 +62,21 @@ public:
         }
         // if all letters are found, it means prefix exist
         return true;        
+    }
+    
+    // ADDITIONAL COMPONENT -- DESTRUCTOR TO FREE MEMORY
+    ~Trie() {
+        clear(root);
+    }
+    
+    void clear(TrieNode* root){
+        for(auto node:root->children){
+            if(node!=NULL){
+                clear(node);
+            }
+        }
+        
+        delete root;
     }
 };
 
