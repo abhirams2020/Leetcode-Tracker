@@ -56,11 +56,13 @@ public:
 // };
 
 class Trie {
+private:
+    TrieNode* root;
+    
 public:
     Trie() {
         root = new TrieNode();
     }
-
 
     // Inserts a word into the trie.
     void insert(string word) {
@@ -71,6 +73,7 @@ public:
             }
             curr = curr->children[i-'a'];
         }
+        // after all letters inserted, change is_word to true to mark end of word
         curr->is_word = true;
     }
     
@@ -103,25 +106,6 @@ public:
         }
         return true;        
     }
-//     bool startsWith(string prefix) {
-//         int word_len = prefix.length();
-//         int k = 0;
-//         TrieNode *cur = root;
-        
-//         for (int i = 0; i < word_len; i++)
-//         {
-//             k = prefix[i] - 'a';
-//             cur = cur->children[k];
-            
-//             if (cur == NULL)
-//                 return false;
-//         }
-        
-//         return true;
-//     }
-
-private:
-    TrieNode* root;
 };
 
 /**
