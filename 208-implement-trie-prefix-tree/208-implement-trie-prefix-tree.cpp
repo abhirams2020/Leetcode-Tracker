@@ -1,0 +1,133 @@
+class TrieNode {
+public:
+    bool is_word;
+    vector<TrieNode*> children;
+    
+    TrieNode() {
+        is_word = false;
+        children.resize(26,NULL);
+    }
+};
+
+// class Trie {
+// public:
+//     TrieNode* root;
+    
+//     Trie() {
+//         root = new TrieNode();    
+//     }
+    
+//     void insert(string word) {
+//         TrieNode* curr = root;
+//         for(auto i:word){
+//             if(curr->child[i-'a'] == NULL){
+//                 curr->child[i-'a'] = new TrieNode();
+//             }
+//             curr = curr->child[i-'a'];
+//         }
+//         curr->isEnd = true;
+//     }
+    
+//     bool search(string word) {
+//         TrieNode* curr = root;
+//         int i = 0;
+//         while(curr->isEnd==false){
+//             if(curr->child[word[i]-'a'] == NULL){
+//                 return false;
+//             }
+//             curr = curr->child[word[i]-'a'];
+//             i++;
+//         }
+//         return true;
+//     }
+    
+//     bool startsWith(string prefix) {
+//         TrieNode* curr = root;
+//         int i = 0;
+//         while(i!=prefix.length()){
+//             if(curr->child[prefix[i]-'a'] == NULL){
+//                 return false;
+//             }
+//             curr = curr->child[prefix[i]-'a'];
+//             i++;
+//         }
+//         return true;        
+//     }
+// };
+
+class Trie {
+public:
+    Trie() {
+        root = new TrieNode();
+    }
+
+
+    // Inserts a word into the trie.
+    void insert(string word) {
+        TrieNode* curr = root;
+        for(auto i:word){
+            if(curr->children[i-'a'] == NULL){
+                curr->children[i-'a'] = new TrieNode();
+            }
+            curr = curr->children[i-'a'];
+        }
+        curr->is_word = true;
+    }
+    
+    // Returns if the word is in the trie.
+    bool search(string word) {
+        TrieNode* curr = root;
+        int i = 0;
+        while(i<word.length()){
+            if(curr->children[word[i]-'a'] == NULL){
+                return false;
+            }
+            curr = curr->children[word[i]-'a'];
+            i++;
+        }
+        // if there is more letters present, it will have is_word = false. If end of word, then is_word = true
+        return curr->is_word;
+    }
+    
+    // Returns if there is any word in the trie
+    // that starts with the given prefix.
+    bool startsWith(string prefix) {
+        TrieNode* curr = root;
+        int i = 0;
+        while(i<prefix.length()){
+            if(curr->children[prefix[i]-'a'] == NULL){
+                return false;
+            }
+            curr = curr->children[prefix[i]-'a'];
+            i++;
+        }
+        return true;        
+    }
+//     bool startsWith(string prefix) {
+//         int word_len = prefix.length();
+//         int k = 0;
+//         TrieNode *cur = root;
+        
+//         for (int i = 0; i < word_len; i++)
+//         {
+//             k = prefix[i] - 'a';
+//             cur = cur->children[k];
+            
+//             if (cur == NULL)
+//                 return false;
+//         }
+        
+//         return true;
+//     }
+
+private:
+    TrieNode* root;
+};
+
+/**
+ * Your Trie object will be instantiated and called as such:
+ * Trie* obj = new Trie();
+ * obj->insert(word);
+ * bool param_2 = obj->search(word);
+ * bool param_3 = obj->startsWith(prefix);
+ */
