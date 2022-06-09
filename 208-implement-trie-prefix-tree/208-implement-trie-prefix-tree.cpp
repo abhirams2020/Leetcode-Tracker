@@ -67,6 +67,8 @@ public:
     // Inserts a word into the trie.
     void insert(string word) {
         TrieNode* curr = root;
+        // in case of inserting apple after app, no need to change is_word value at p
+        // each is_word=true represents a word in the trie
         for(auto i:word){
             if(curr->children[i-'a'] == NULL){
                 curr->children[i-'a'] = new TrieNode();
@@ -104,6 +106,7 @@ public:
             curr = curr->children[prefix[i]-'a'];
             i++;
         }
+        // if all letters are found, it means prefix exist
         return true;        
     }
 };
