@@ -63,21 +63,6 @@ public:
         // if all letters are found, it means prefix exist
         return true;        
     }
-    
-    // ADDITIONAL COMPONENT -- DESTRUCTOR TO FREE MEMORY
-    ~Trie() {
-        clear(root);
-    }
-    
-    void clear(TrieNode* root){
-        for(auto node:root->children){
-            if(node!=NULL){
-                clear(node);
-            }
-        }
-        
-        delete root;
-    }
 };
 
 /**
