@@ -53,14 +53,14 @@
 // need to traverse a starting point only once
 class TrieNode {
 public:
-    string word; // instead of isend, store the word  from root to a node
-    // vector<TrieNode*> children;
-    TrieNode* children[26];
+    bool isEnd;
+    string word; // store the word  from root to a node
+    vector<TrieNode*> children;
     
     TrieNode() {
+        isEnd = false;
         word = "";
-        // children.resize(26,NULL);
-        memset(children, NULL, sizeof(children));
+        children.resize(26,NULL);
     }
     
     void insert(string &word) {
@@ -71,6 +71,7 @@ public:
             }
             curr = curr->children[c-'a'];
         }
+        curr->isEnd = true;
         curr->word = word;
     }
 };
@@ -86,9 +87,9 @@ public:
         }
         
         // if curr is ending node of a word, add word to result vector
-        if(curr->word != ""){
+        if(curr->isEnd){
             res.push_back(curr->word);
-            curr->word = ""; // make curr->word="" after inserting in res to avoid duplication
+            curr->isEnd = false; // make curr->word="" after inserting in res to avoid duplication
         }
         
         // if index out of range or board[i][j] was visited earlier, return
