@@ -47,7 +47,7 @@
 //     }
 // };
 
-// // USING TRIE (PREFIX TREE)
+// /* USING TRIE (PREFIX TREE) */
 
 // // efficient to check if a prefix exist in trie
 // // need to traverse a starting point only once
