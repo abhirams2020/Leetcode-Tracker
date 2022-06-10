@@ -77,7 +77,6 @@ public:
 
 class Solution {
 public:
-    
     vector<string> res;
     
     void dfs(vector<vector<char>>& board, int i, int j, TrieNode* curr) {
@@ -89,7 +88,7 @@ public:
         // if curr is ending node of a word, add word to result vector
         if(curr->word != ""){
             res.push_back(curr->word);
-            curr->word = "";
+            curr->word = ""; // make curr->word="" after inserting in res to avoid duplication
         }
         
         // if index out of range or board[i][j] was visited earlier, return
