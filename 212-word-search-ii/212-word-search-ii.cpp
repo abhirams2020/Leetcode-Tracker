@@ -48,15 +48,19 @@
 // };
 
 // USING TRIE (PREFIX TREE)
+
+// efficient to check if a prefix exist in trie
+// need to traverse a starting point only once
 class TrieNode {
 public:
-    string *word; // instead of isend, store the word  from root to a node
-    vector<TrieNode*> children;
+    string word; // instead of isend, store the word  from root to a node
+    // vector<TrieNode*> children;
+    TrieNode* children[26];
     
     TrieNode() {
-        // word = "";
-        word = NULL;
-        children.resize(26,NULL);
+        word = "";
+        // children.resize(26,NULL);
+        memset(children, NULL, sizeof(children));
     }
     
     void insert(string &word) {
@@ -67,7 +71,7 @@ public:
             }
             curr = curr->children[c-'a'];
         }
-        curr->word = &word;
+        curr->word = word;
     }
 };
 
@@ -83,13 +87,9 @@ public:
         }
         
         // if curr is ending node of a word, add word to result vector
-        // if(curr->word != ""){
-        //     res.push_back(curr->word);
-        //     curr->word = "";
-        // }
-        if(curr->word != NULL){
-            res.push_back(*curr->word);
-            curr->word = NULL;
+        if(curr->word != ""){
+            res.push_back(curr->word);
+            curr->word = "";
         }
         
         // if index out of range or board[i][j] was visited earlier, return
@@ -111,6 +111,7 @@ public:
         board[i][j] = temp;
     }
     
+    // function to build trie using given words
     TrieNode* buildTrie(vector<string> &words){
         TrieNode* root = new TrieNode();
         for(int i=0;i<words.size();i++){
