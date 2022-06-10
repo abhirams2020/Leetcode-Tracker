@@ -47,10 +47,11 @@
 //     }
 // };
 
-// USING TRIE (PREFIX TREE)
+// // USING TRIE (PREFIX TREE)
 
-// efficient to check if a prefix exist in trie
-// need to traverse a starting point only once
+// // efficient to check if a prefix exist in trie
+// // need to traverse a starting point only once
+
 class TrieNode {
 public:
     bool isEnd;
@@ -89,11 +90,10 @@ public:
         // if curr is ending node of a word, add word to result vector
         if(curr->isEnd){
             res.push_back(curr->word);
-            curr->isEnd = false; // make curr->word="" after inserting in res to avoid duplication
+            curr->isEnd = false; // make curr->isEnd=false after inserting in res to avoid duplication
         }
         
-        // if index out of range or board[i][j] was visited earlier, return
-        if(i<0 || j<0 || i>=board.size() || j>=board[0].size() || board[i][j]=='$'){
+        if(i<0 || j<0 || i>=board.size() || j>=board[0].size() || board[i][j]=='#'){
             return;
         }
         
@@ -101,7 +101,7 @@ public:
         
         // backtracking
         char temp = board[i][j];
-        board[i][j] = '$';
+        board[i][j] = '#';
         
         dfs(board,i+1,j,curr);
         dfs(board,i-1,j,curr);
@@ -122,8 +122,8 @@ public:
     
     vector<string> findWords(vector<vector<char>>& board, vector<string>& words) {
         TrieNode* root = buildTrie(words);
-        
-        // search every word in grid
+
+        // search every letter in board
         for(int i=0;i<board.size();i++){
             for(int j=0;j<board[0].size();j++){
                 if(root->children[board[i][j]-'a'] != NULL){
