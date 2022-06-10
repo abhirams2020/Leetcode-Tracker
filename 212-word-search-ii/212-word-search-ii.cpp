@@ -50,11 +50,12 @@
 // USING TRIE (PREFIX TREE)
 class TrieNode {
 public:
-    string word; // instead of isend, store the word  from root to a node
+    string *word; // instead of isend, store the word  from root to a node
     vector<TrieNode*> children;
     
     TrieNode() {
-        word = "";
+        // word = "";
+        word = NULL;
         children.resize(26,NULL);
     }
     
@@ -66,7 +67,7 @@ public:
             }
             curr = curr->children[c-'a'];
         }
-        curr->word = word;
+        curr->word = &word;
     }
 };
 
@@ -82,9 +83,13 @@ public:
         }
         
         // if curr is ending node of a word, add word to result vector
-        if(curr->word != ""){
-            res.push_back(curr->word);
-            curr->word = "";
+        // if(curr->word != ""){
+        //     res.push_back(curr->word);
+        //     curr->word = "";
+        // }
+        if(curr->word != NULL){
+            res.push_back(*curr->word);
+            curr->word = NULL;
         }
         
         // if index out of range or board[i][j] was visited earlier, return
@@ -105,16 +110,6 @@ public:
         
         board[i][j] = temp;
     }
-
-    void searchWord(vector<vector<char>>& board, TrieNode* root) {
-        for(int i=0;i<board.size();i++){
-            for(int j=0;j<board[0].size();j++){
-                if(root->children[board[i][j]-'a'] != NULL){
-                    dfs(board,i,j,root);
-                }
-            }
-        }
-    }
     
     TrieNode* buildTrie(vector<string> &words){
         TrieNode* root = new TrieNode();
@@ -128,7 +123,13 @@ public:
         TrieNode* root = buildTrie(words);
         
         // search every word in grid
-        searchWord(board,root);
+        for(int i=0;i<board.size();i++){
+            for(int j=0;j<board[0].size();j++){
+                if(root->children[board[i][j]-'a'] != NULL){
+                    dfs(board,i,j,root);
+                }
+            }
+        }
         
         return res;
     } 
