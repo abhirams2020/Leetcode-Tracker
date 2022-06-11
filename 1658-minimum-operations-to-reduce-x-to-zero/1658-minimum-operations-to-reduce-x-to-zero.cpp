@@ -1,6 +1,7 @@
 class Solution {
 public:
-    
+    // Goal is to find a window of longest length which has sum equal to s - x, 
+    // where s is sum of all the elements of the array.
     int minOperations(vector<int>& nums, int x) {
         int sum = 0, ans = INT_MAX;
         for(auto i:nums){
