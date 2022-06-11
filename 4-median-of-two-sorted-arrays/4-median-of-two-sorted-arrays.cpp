@@ -7,8 +7,8 @@ public:
         }
         // no of elements in left partition of the merged array
         int half = (n1 + n2)/2;
-        int left = -1 , right = n1;
-        while(left<=right){
+        int left = 0 , right = n1-1;
+        while(true){
             int m1 = floor((left+right)/2.0);
             int m2 = half - m1 - 2;
             
