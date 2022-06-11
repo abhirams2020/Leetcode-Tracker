@@ -16,8 +16,9 @@ public:
         if(n1 > n2){
             return kthElement(nums2, nums1, n2, n1, k);
         }
-        // no of elements in left partition of the merged array
-        // int left = 0 , right = n1;
+        
+        // if k > n2, then we need to select atleast k-n2 elements from n1
+        // if k < n1, then at max we can select k elements from n1.
         int left = max(0,k-n2), right = min(k,n1);
         while(left<=right){
             // cut denotes start index of right section. left is [0,....,cut1-1]
