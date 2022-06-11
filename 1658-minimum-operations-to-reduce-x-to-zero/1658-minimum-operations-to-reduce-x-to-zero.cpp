@@ -15,6 +15,9 @@ public:
         if(target==0){
             return nums.size();
         }
+        if(target < 0){
+            return -1;
+        }
         int currSum = 0;
         int left = 0;
         int maxLen = 0;
