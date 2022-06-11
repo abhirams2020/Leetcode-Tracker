@@ -7,15 +7,15 @@ public:
         }
         // no of elements in left partition of the merged array
         int half = (n1 + n2)/2;
-        int left = 0 , right = n1-1;
-        while(true){
-            int m1 = floor((left+right)/2.0);
-            int m2 = half - m1 - 2;
+        int left = 0 , right = n1;
+        while(left<=right){
+            int m1 = (left+right)/2;
+            int m2 = half - m1;
             
-            int l1 = (m1<0)?INT_MIN:nums1[m1];
-            int l2 = (m2<0)?INT_MIN:nums2[m2];
-            int r1 = (m1+1>=n1)?INT_MAX:nums1[m1+1];
-            int r2 = (m2+1>=n2)?INT_MAX:nums2[m2+1];
+            int l1 = (m1-1<0)?INT_MIN:nums1[m1-1];
+            int l2 = (m2-1<0)?INT_MIN:nums2[m2-1];
+            int r1 = (m1>=n1)?INT_MAX:nums1[m1];
+            int r2 = (m2>=n2)?INT_MAX:nums2[m2];
             // cout<<m1<<" "<<m2<<endl;
             // cout<<l1<<" "<<r2<<" : "<<l2<<" "<<r1<<endl;
             if(l1<=r2 && l2<=r1){
