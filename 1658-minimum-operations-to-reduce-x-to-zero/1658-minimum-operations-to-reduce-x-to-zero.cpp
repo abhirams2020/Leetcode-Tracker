@@ -8,7 +8,6 @@ public:
             sum += nums[i];
             mp[sum] = i;
         }
-        
         int target = sum - x;
         
         if(target==0){
@@ -22,18 +21,16 @@ public:
         int left = 0;
         int maxLen = 0;
         // if 0 to i has sum = target, include that range in maxLen
-        if(mp.count(target)){
-            maxLen = mp[target]+1;
-        }
+        mp[0] = -1;
         
         for(int i=0;i<nums.size();i++){
             currSum += nums[i];
-            int reqd = target + currSum;
+            int reqd = currSum - target;
             if(mp.count(reqd)){
-                maxLen = max(maxLen, mp[reqd] - i);
+                maxLen = max(maxLen, i - mp[reqd]);
             }
         }
-        if(maxLen == 0){
+        if(maxLen == 0){ // no valid window found
             return -1;
         }
         return nums.size()-maxLen;
