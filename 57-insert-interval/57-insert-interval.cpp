@@ -51,18 +51,17 @@ public:
             res.push_back(intervals[i]);
             i++;
         }
-        
-        // current interval overlaps which new interval, so change curr interval
-        prev = newInterval;
-        
-        // merge intervals till end of prev is less than start of curr
-        while(i<n && prev[1]>=intervals[i][0]){
-            prev[0] = min(intervals[i][0], prev[0]);
-            prev[1] = max(intervals[i][1], prev[1]);
+    
+        // merge intervals till end of newInterval is less than start of curr
+        while(i<n && newInterval[1]>=intervals[i][0]){
+            newInterval[0] = min(intervals[i][0], newInterval[0]);
+            newInterval[1] = max(intervals[i][1], newInterval[1]);
             i++;
         }
+        
         // push the resulting prev after merging
-        res.push_back(prev);
+        res.push_back(newInterval);
+        
         // add remaining intervals to result
         while(i<n){
             res.push_back(intervals[i]);
