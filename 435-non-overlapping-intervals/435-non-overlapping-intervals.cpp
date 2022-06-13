@@ -1,4 +1,4 @@
-// // SORTING BY END INTERVAL
+// // SORTING INTERVALS BY END INDEX
 
 // class Solution {
 // public:
@@ -28,8 +28,31 @@
 //     }
 // };
 
-class Solution 
-{
+
+// SORTING INTERVALS BY START INDEX
+
+// Case 1:-
+// ------------------   -----------------
+// |   Interval 1   |   |   Interval 2  |
+// ------------------   -----------------
+
+//Case 2:-
+// ------------------
+// |   Interval 1   |
+// ------------------
+//            ------------------
+//            |    Interval 2  |
+//            ------------------
+
+//Case 3:-
+//  --------------------
+//  |    Interval 1    |
+//  --------------------
+//     --------------
+//     | Interval 2 |
+//     --------------
+
+class Solution {
 public:
     int eraseOverlapIntervals(vector<vector<int>>& intervals) 
     {
@@ -39,17 +62,22 @@ public:
         vector<int> prev = {INT_MIN,INT_MIN};
         
         for(int i=0;i<n;i++){
+            // if intervals dont overlap, change prev to curr and check next interval
             if(prev[1] <= intervals[i][0]){
                 prev = intervals[i];
             }
             else {
+                // if interval 1 covers interval 2, remove interval 1 to avoid overlap with further intervals
+                // else remove interval 2 to avoid overlap with further intervals
                 if(prev[1]<=intervals[i][1]){
-                    // do nothing
+                    // remove curr interval
+                    count++;
                 }
                 else {
+                    // remove prev interal
                     prev = intervals[i];
+                    count++;
                 }
-                count++;
             }
         }
         return count;
