@@ -1,5 +1,5 @@
-class Solution {
-public:
+// class Solution {
+// public:
 //     static bool comp(vector<int>& a, vector<int>& b){
 //         return a[1]<b[1];
 //     }
@@ -24,26 +24,34 @@ public:
         
 //         return count;
 //     }
-    
-    static bool comp(vector<int>& a, vector<int>& b)
-    {
-        if(a[1] == b[1]) return a[0]<b[0];
-        return a[1]<b[1];
-    }
+// };
 
-    int eraseOverlapIntervals(vector<vector<int>>& intervals) {
-        sort(intervals.begin(), intervals.end(),comp);
-        int n = intervals.size();
-        int ans = 0;
-        vector<int> p = intervals[0];
-        
-        for(int i=1;i<n;i++)
+class Solution 
+{
+public:
+    int eraseOverlapIntervals(vector<vector<int>>&v) 
+    {
+        sort(v.begin(),v.end());
+        int count=0,l=0,r=1,n=v.size();
+        while(r<n)
         {
-            if(p[1] > intervals[i][0])
-                ans++;
-            else
-                p = intervals[i];
+            if(v[l][1]<=v[r][0]) // Non-overlapping case(Case 1)
+            {
+                l=r;
+                r++;
+            }
+            else if(v[l][1]<=v[r][1])  // Case 2
+            {
+                count++;
+                r++;
+            }
+            else if(v[l][1]>v[r][1])   // Case 3
+            {
+                count++;
+                l=r;
+                r++;
+            }
         }
-        return ans;
+        return count;
     }
 };
