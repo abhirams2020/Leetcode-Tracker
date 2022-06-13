@@ -44,14 +44,13 @@ public:
         vector<int> prev(2);
         vector<vector<int>> res;
         int n = intervals.size();
-        bool found = false;
         int i=0;
         // add all intervals to res which end before start of newInterval
         while(i<n && intervals[i][1]<newInterval[0]){
             res.push_back(intervals[i]);
             i++;
         }
-    
+
         // merge intervals till end of newInterval is less than start of curr
         while(i<n && newInterval[1]>=intervals[i][0]){
             newInterval[0] = min(intervals[i][0], newInterval[0]);
