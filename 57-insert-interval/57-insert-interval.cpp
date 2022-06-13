@@ -39,7 +39,6 @@ public:
 //         return mergeIntervals(intervals);
 //     }
     
-   // sort the intervals after inserting new interval and merge them
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
         vector<int> prev(2);
         vector<vector<int>> res;
