@@ -1,7 +1,6 @@
 class Solution {
 public:
     static bool comp(vector<int>& a, vector<int>& b){
-        if(a[1] == b[1]) return a[0]<b[0];
         return a[1]<b[1];
     }
     
@@ -9,6 +8,8 @@ public:
         int n = intervals.size();
         int count = 0;
         
+        // sort elements wrt end index to remove min no of intervals
+        // to remove max no of intervals, sort by start index
         sort(intervals.begin(),intervals.end(),comp);
         vector<int> prev = {INT_MIN,INT_MIN};
         
