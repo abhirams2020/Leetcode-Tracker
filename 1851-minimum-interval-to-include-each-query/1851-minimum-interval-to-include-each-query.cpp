@@ -10,10 +10,6 @@ public:
         priority_queue<pii, vector<pii>, greater<pii>> pq;
         int i = 0;
         for(auto num:q){
-            while(!pq.empty() && pq.top().second < num){
-                pq.pop();
-            }
-            
             while(i < intervals.size()){
                 int start = intervals[i][0], end = intervals[i][1];
                 if(start>num){
@@ -24,6 +20,11 @@ public:
                 }
                 i++;
             }
+                        
+            while(!pq.empty() && pq.top().second < num){
+                pq.pop();
+            }
+            
             if(pq.empty()){
                 mp[num] = -1;
             }
