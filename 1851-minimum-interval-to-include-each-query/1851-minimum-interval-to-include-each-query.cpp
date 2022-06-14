@@ -1,35 +1,39 @@
 class Solution {
 public:
+    typedef pair<int,int> pii;
+    
     vector<int> minInterval(vector<vector<int>>& intervals, vector<int>& queries) {
-        unordered_map<int, int> result;
-		vector<int> res;
-		priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>  > pq;
-		int i = 0;
-		int n = intervals.size();
-        vector<int> copyQueries = queries;
-		
-        sort(queries.begin(), queries.end());
-        sort(intervals.begin(), intervals.end());
-   				
-        for (int q: queries) {
-            while (i < n && intervals[i][0] <= q) {
-                if(intervals[i][1] >= q){
-                    int size = intervals[i][1] - intervals[i][0] + 1;
-                    pq.push({size, intervals[i][1]});
+        vector<int> q = queries;
+        sort(intervals.begin(),intervals.end());
+        sort(q.begin(),q.end());
+        unordered_map<int,int> mp;
+        priority_queue<pii, vector<pii>, greater<pii>> pq;
+        int i = 0;
+        for(auto num:q){
+            while(!pq.empty() && pq.top().second < num){
+                pq.pop();
+            }
+            
+            while(i < intervals.size()){
+                int start = intervals[i][0], end = intervals[i][1];
+                if(start>num){
+                    break;
+                }
+                if(end>=num){
+                    pq.push({end-start+1, end});
                 }
                 i++;
             }
-            while (!pq.empty() && pq.top().second < q) {
-                    pq.pop();
+            if(pq.empty()){
+                mp[num] = -1;
             }
-            if (!pq.empty()) {
-                result[q] = pq.top().first;
-            } else {
-                result[q]= -1;
+            else {
+                mp[num] = pq.top().first;
             }
         }
-        for (int i = 0; i < copyQueries.size(); i++) {
-            res.push_back(result[copyQueries[i]]);
+        vector<int> res;
+        for(auto i:queries){
+            res.push_back(mp[i]);
         }
         return res;
     }
