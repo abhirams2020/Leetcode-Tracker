@@ -31,11 +31,15 @@ public:
     //     }
     //     return count;
     // }
+    
+    // Sort the {pos,speed} pair by pos. For car at a pos, cars behind it till
+    // the car with time taken more than time[pos] is considered one fleet
     static bool comp(pair<int,double> &a, pair<int,double> &b) {
         return a.first < b.first;
     }
     
     int carFleet(int target, vector<int>& position, vector<int>& speed) {
+        // vector to store {position, time}
         vector<pair<int,double>> posTime;
         int count = 0;
         for(int i=0;i<position.size();i++){
@@ -43,6 +47,7 @@ public:
             posTime.push_back({position[i],time});            
         }
         sort(posTime.begin(),posTime.end(),comp);
+        // start from end index and move left till car with time more than curr found
         int i=position.size()-1;
         while(i>=0){
             double currTime = posTime[i].second;
