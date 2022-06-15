@@ -1,6 +1,6 @@
 class Solution {
 public:
-//      //O(N) space
+//      // O(N) space
 //      int trap(vector<int>& height) {
 //         int left=0, right=0, sum=0, n = height.size();
 //         vector<int> maxLeft(n), maxRight(n);
