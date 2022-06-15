@@ -6,7 +6,8 @@ public:
     // For every car, if it meets the car ahead it should get the speed of the ahead car
     
     // if time taken by car behind curr is less than time taken by curr, they will arrive as a fleet
-    // remove all pos behind curr which has time <= curr time. All these will be single fleet. Then increment count.
+    // remove all pos behind curr which has time<=curr time till time>currtime. 
+    // All these will be single fleet. Then increment count.
     // repeat till the priority queue is empty
     
     // eg.  If A,B,C are  following each other and time taken to reach target in the order C,A,B
