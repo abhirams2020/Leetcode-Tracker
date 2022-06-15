@@ -14,11 +14,10 @@ public:
     }
     
     void pop() {
-        int num = s.top();
-        s.pop();
-        if(num == min.top()){
+        if(s.top() == min.top()){
             min.pop();
         }
+        s.pop();
     }
     
     int top() {
