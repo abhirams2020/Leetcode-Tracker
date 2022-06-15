@@ -21,18 +21,20 @@ public:
         bool flag = false;
         while(!q.empty()){
             int n = q.size();
-            vector<int> temp;
+            vector<int> temp(n);
             for(int i=0;i<n;i++){
                 TreeNode *curr = q.front();
-                temp.push_back(curr->val);
+                if(flag == true){
+                    temp[n-1-i] = curr->val;
+                }
+                else {
+                    temp[i] = curr->val;
+                }
                 if(curr->left)
                     q.push(curr->left);
                 if(curr->right)
                     q.push(curr->right);
                 q.pop();
-            }
-            if(flag==true){
-                reverse(temp.begin(),temp.end());
             }
             res.push_back(temp);
             flag = !flag;
