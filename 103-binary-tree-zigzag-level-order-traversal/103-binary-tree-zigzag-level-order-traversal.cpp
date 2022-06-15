@@ -11,7 +11,8 @@
  */
 class Solution {
 public:
-    // // REVERSING THE LEVEL AFTER GETTING ALL ELEMENTS
+    // // BY REVERSING THE LEVEL AFTER GETTING ALL ELEMENTS
+    
     // vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
     //     vector<vector<int>> res;
     //     if(!root){
@@ -19,17 +20,18 @@ public:
     //     }
     //     queue<TreeNode*> q;
     //     q.push(root);
-    //     bool leftToRight = false;
+    //     // leftToRight indicates if we need to input elements in left to right order
+    //     bool leftToRight = true;
     //     while(!q.empty()){
     //         int n = q.size();
     //         vector<int> temp(n);
     //         for(int i=0;i<n;i++){
     //             TreeNode *curr = q.front();
     //             if(leftToRight == true){
-    //                 temp[n-1-i] = curr->val;
+    //                 temp[i] = curr->val;
     //             }
     //             else {
-    //                 temp[i] = curr->val;
+    //                 temp[n-1-i] = curr->val;
     //             }
     //             if(curr->left)
     //                 q.push(curr->left);
@@ -43,36 +45,42 @@ public:
     //     return res;
     // }
     
+    
     // REVERSING ORDER OF ADDING ELEMENTS IN QUEUE
+    
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
         vector<vector<int>> res;
         if(!root){
             return res;
         }
-        deque<TreeNode*> q;
-        q.push_back(root);
-        bool leftToRight = false;
-        while(!q.empty()){
-            int n = q.size();
+        // use deque to access the queue elements in reverse order for right to left traversal
+        deque<TreeNode*> dq;
+        dq.push_back(root);
+        bool leftToRight = true;
+        while(!dq.empty()){
+            int n = dq.size();
             vector<int> temp;
             for(int i=0;i<n;i++){
-                if(leftToRight == false){
-                    TreeNode *curr = q.front();
+                // if leftToRight is true, do same steps as normal level order traversal
+                if(leftToRight == true){
+                    TreeNode *curr = dq.front();
                     temp.push_back(curr->val);
                     if(curr->left)
-                        q.push_back(curr->left);
+                        dq.push_back(curr->left);
                     if(curr->right)
-                        q.push_back(curr->right);
-                    q.pop_front();
+                        dq.push_back(curr->right);
+                    dq.pop_front();
                 }
+                // if leftToRight is false, reverse the steps of normal level order traversal
+                // i.e change front to back, left to right etc
                 else {
-                    TreeNode *curr = q.back();
+                    TreeNode *curr = dq.back();
                     temp.push_back(curr->val);
                     if(curr->right)
-                        q.push_front(curr->right);
+                        dq.push_front(curr->right);
                     if(curr->left)
-                        q.push_front(curr->left);
-                    q.pop_back();
+                        dq.push_front(curr->left);
+                    dq.pop_back();
                 }
             }
             res.push_back(temp);
