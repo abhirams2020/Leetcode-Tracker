@@ -4,7 +4,7 @@ public:
         if(str.length()%2){
             return false;
         }
-        map<char,char> mp = {{')','('}, {']','[' }, {'}','{'}};
+        unordered_map<char,char> mp = {{')','('}, {']','[' }, {'}','{'}};
         stack<char> st;
         set<char> s = {'(','[','{'};
         for(char ch:str) {
