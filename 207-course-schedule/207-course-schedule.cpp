@@ -20,7 +20,7 @@ public:
                 noCycle.insert(i);
             }
         }
-        visited.erase(curr);
+        // visited.erase(curr);
         return false;
     }
     
@@ -33,6 +33,7 @@ public:
             if(isCycle(curr)){
                 return false;
             }
+            visited.clear();
             noCycle.insert(curr);
         }
         return true;
