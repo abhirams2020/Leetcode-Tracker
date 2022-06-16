@@ -1,7 +1,10 @@
 class Solution {
 public:
+    // mapping of a course to its prerequisites
     unordered_map<int,vector<int>> mp;
+    // visited set for checking if node visited again during dfs
     unordered_set<int> visited;
+    // noCycle set to save valid subjects
     unordered_set<int> noCycle;
     
     bool isCycle(int curr){
@@ -20,10 +23,12 @@ public:
                 return true;
             }
             else {
+                // since no cycles found for i, add to noCycle set
                 noCycle.insert(i);
             }
         }
         visited.erase(curr);
+        // since no cycles found for curr, add to noCycle set
         noCycle.insert(curr);
         return false;
     }
