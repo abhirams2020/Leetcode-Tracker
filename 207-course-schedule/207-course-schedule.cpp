@@ -5,12 +5,15 @@ public:
     unordered_set<int> noCycle;
     
     bool isCycle(int curr){
-        if(noCycle.count(curr)){
-            return false;
-        }
+        // if curr visited again means curr is starting of cycle
         if(visited.count(curr)){
             return true;
         }
+        // if curr element is valid subject, there is no cycle
+        if(noCycle.count(curr)){
+            return false;
+        }
+        // backtracking
         visited.insert(curr);
         for(auto i:mp[curr]){
             if(isCycle(i)){
@@ -20,7 +23,8 @@ public:
                 noCycle.insert(i);
             }
         }
-        // visited.erase(curr);
+        visited.erase(curr);
+        noCycle.insert(curr);
         return false;
     }
     
@@ -28,13 +32,12 @@ public:
         for(auto i:prerequisites){
             mp[i[1]].push_back(i[0]);
         }
+        // DFS with backtracking to check if the graph contains cycle
         for(auto i:prerequisites){
             int curr = i[0];
             if(isCycle(curr)){
                 return false;
             }
-            visited.clear();
-            noCycle.insert(curr);
         }
         return true;
     }
