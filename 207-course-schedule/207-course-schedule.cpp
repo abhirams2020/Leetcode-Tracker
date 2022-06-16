@@ -35,7 +35,7 @@ public:
     
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         for(auto i:prerequisites){
-            mp[i[1]].push_back(i[0]);
+            mp[i[0]].push_back(i[1]);
         }
         // DFS with backtracking to check if the graph contains cycle
         for(auto i:prerequisites){
