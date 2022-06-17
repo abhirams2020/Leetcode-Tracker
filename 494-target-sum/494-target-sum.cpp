@@ -1,10 +1,10 @@
 class Solution {
 public:
-    
     int dp[21][2000];
     
     int solve(vector<int> &nums, int sum, int target, int index){
         if(sum == target and index == nums.size()){
+            cout<<index<<endl;
             return 1;
         }
         if(index == nums.size()){
