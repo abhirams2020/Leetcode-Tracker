@@ -1,6 +1,7 @@
 class Solution {
 public:
-    int dp[21][2001];
+    // int dp[21][2001];
+    vector<vector<int>> dp;
     
     int solve(vector<int> &nums, int target, int index){
         if(target==0 and index == nums.size()){
@@ -19,7 +20,6 @@ public:
     
     
     int findTargetSumWays(vector<int>& nums, int diff) {
-        memset(dp,-1,sizeof(dp));
         // A + B = sum
         // A - B = diff
         // Find target = (sum+target)/2 from the nums. add +1 when subsequence found
@@ -34,6 +34,8 @@ public:
             return 0;
         }
         int target = (sum+diff)/2;
+        // memset(dp,-1,sizeof(dp));
+        dp.resize(nums.size()+1, vector<int>(1000+target+1, -1));
         int ans = solve(nums,target,0);
         return ans;
     }
