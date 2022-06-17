@@ -10,6 +10,9 @@ public:
         if(index == nums.size()){
             return 0;
         }
+        if(nums[index] == 0){
+            return dp[index][1000+target] = 2 * solve(nums,target,index+1);
+        }
         if(dp[index][1000+target]!=-1){
             return dp[index][1000+target];
         }
