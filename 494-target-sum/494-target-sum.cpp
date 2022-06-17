@@ -5,22 +5,19 @@ public:
     
     // solve(target,index) return no of ways to reach target from index
     int solve(vector<int> &nums, int target, int index){
+        // we need to traverse till end of nums even if target = 0 is reached
+        // if we break when target is reached, we wont be considering 0's in the array
         if(index == nums.size()){
             if(target == 0){
                 return 1;
             }
             return 0;
         }
-        // if(target==0 and index == nums.size()){
-        //     return 1;
-        // }
-        if(nums[index] == 0){
-            return dp[index][1000+target] = 2 * solve(nums,target,index+1);
-        }
         if(dp[index][1000+target]!=-1){
             return dp[index][1000+target];
         }
         if(nums[index]<=target)
+            // in case of 0, no of ways = 2 * solve(nums,target,index+1)
             return dp[index][1000+target] = solve(nums,target-nums[index],index+1) + solve(nums,target,index+1);
         return dp[index][1000+target] = solve(nums,target,index+1);
     }
