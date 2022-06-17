@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int dp[21][2002];
+    int dp[21][2001];
     // vector<vector<int>> dp;
     
     // targetSum(target,index) return no of ways to reach target from index
