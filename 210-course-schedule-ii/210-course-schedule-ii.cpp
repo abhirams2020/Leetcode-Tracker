@@ -2,10 +2,10 @@ class Solution {
 public:
     // mapping of a course to its prerequisites
     unordered_map<int,vector<int>> mp;
-    // // visited set for checking if node visited again during dfs
-    // unordered_set<int> visited;
-    // // noCycle set to save valid subjects visited before
-    // unordered_set<int> noCycle;
+    // visited set for checking if node visited again during dfs
+    // 0 -> node not visited
+    // 1 -> node visited
+    // 2 -> node visited and the course can be taken
     vector<int> visited;
     
     bool isCycle(int curr, vector<int> &ans){
@@ -13,12 +13,13 @@ public:
         if(visited[curr]==1){
             return true;
         }
-        // if curr element is valid subject, there is no cycle
+        // if curr element is valid subject and it has visited before
         if(visited[curr]==2){
             return false;
         }
         
         // backtracking
+        // current node is added to visited list
         visited[curr] = 1;
         for(auto i:mp[curr]){
             if(isCycle(i,ans)){
@@ -29,7 +30,7 @@ public:
                 visited[i] = 2;
             }
         }
-        // since no cycles found for curr, add to noCycle set
+        // since no cycles found for curr, visited[curr] = 2
         visited[curr] = 2;
         
         // since curr is visited and can be completed, add to ans
@@ -39,10 +40,11 @@ public:
     }
     
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        // total number of courses is numCourses -> from 0 to n-1
-        // assing empty vector to all courses at first, then add prerequisites to the courses
+        // initialise all nodes to 0 meaning unvisited
         visited.resize(numCourses,0);
         vector<int> ans;
+        // total number of courses is numCourses -> from 0 to n-1
+        // assing empty vector to all courses at first, then add prerequisites to the courses
         for(int i=0;i<numCourses;i++){
             mp[i] = {};
         }
