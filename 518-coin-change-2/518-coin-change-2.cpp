@@ -6,7 +6,7 @@ public:
         if(target==0){
             return 1;
         }
-        if(target<0 || index==coins.size()){
+        if(index==coins.size()){
             return 0;
         }
         if(dp[index][target]!=-1){
