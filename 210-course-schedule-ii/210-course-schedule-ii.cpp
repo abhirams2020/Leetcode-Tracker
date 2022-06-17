@@ -35,14 +35,14 @@ public:
     }
     
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        if(prerequisites.size()==0){
-            // Empty prerequisite list => Courses are independent => take the courses in any order
-            vector<int> ans;
-            for(int i=0;i<numCourses;i++){
-                ans.push_back(i);
-            }
-            return ans;
-        }
+        // if(prerequisites.size()==0){
+        //     // Empty prerequisite list => Courses are independent => take the courses in any order
+        //     vector<int> ans;
+        //     for(int i=0;i<numCourses;i++){
+        //         ans.push_back(i);
+        //     }
+        //     return ans;
+        // }
         for(int i=0;i<numCourses;i++){
             mp[i] = {};
         }
