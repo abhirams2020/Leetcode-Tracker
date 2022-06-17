@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int dp[21][2001];
+    int dp[21][2002];
     // vector<vector<int>> dp;
     
     // targetSum(target,index) return no of ways to reach target from index
@@ -32,7 +32,7 @@ public:
         for(auto i:nums){
             sum += i;
         }
-        // if sum+diff is odd, it means subset satisfying the conds cannot be found, so count = 0
+        // // if sum+diff is odd, it means subset satisfying the conds cannot be found, so count = 0
         if((sum+diff)%2 != 0){
             return 0;
         }
