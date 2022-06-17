@@ -37,6 +37,9 @@ public:
             return 0;
         }
         int target = (sum+diff)/2;
+        if(target<0){
+            return 0;
+        }
         // if target is negative, we cannot call dp[i][target]. so add 1000 to target each time we call dp
         // we change -1000 to 1000 range => 0 to 2001 range
         memset(dp,-1,sizeof(dp));
