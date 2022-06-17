@@ -13,6 +13,8 @@ public:
             return dp[index][target];
         }
         if(coins[index]<=target){
+            // since inf no of coins, if current is valid include it and remain at current index
+            // or not include and move to next index
             return dp[index][target] = knapsack(coins,target-coins[index],index) + knapsack(coins,target,index+1);
         }
         return dp[index][target] = knapsack(coins,target,index+1);
