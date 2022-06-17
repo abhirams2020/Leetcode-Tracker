@@ -3,16 +3,20 @@ public:
     int dp[21][2001];
     // vector<vector<int>> dp;
     
+    // solve(target,index) return no of ways to reach target from index
     int solve(vector<int> &nums, int target, int index){
-        if(target==0 and index == nums.size()){
-            return 1;
-        }
         if(index == nums.size()){
+            if(target == 0){
+                return 1;
+            }
             return 0;
         }
-        // if(nums[index] == 0){
-        //     return dp[index][1000+target] = 2 * solve(nums,target,index+1);
+        // if(target==0 and index == nums.size()){
+        //     return 1;
         // }
+        if(nums[index] == 0){
+            return dp[index][1000+target] = 2 * solve(nums,target,index+1);
+        }
         if(dp[index][1000+target]!=-1){
             return dp[index][1000+target];
         }
