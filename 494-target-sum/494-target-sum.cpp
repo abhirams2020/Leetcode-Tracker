@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int dp[21][2001];
+    int dp[21][1001];
     // vector<vector<int>> dp;
     
     // targetSum(target,index) return no of ways to reach target from index
@@ -13,13 +13,13 @@ public:
             }
             return 0;
         }
-        if(dp[index][1000+target]!=-1){
-            return dp[index][1000+target];
+        if(dp[index][target]!=-1){
+            return dp[index][target];
         }
         if(nums[index]<=target)
             // in case of 0, no of ways = 2 * solve(nums,target,index+1)
-            return dp[index][1000+target] = targetSum(nums,target-nums[index],index+1) + targetSum(nums,target,index+1);
-        return dp[index][1000+target] = targetSum(nums,target,index+1);
+            return dp[index][target] = targetSum(nums,target-nums[index],index+1) + targetSum(nums,target,index+1);
+        return dp[index][target] = targetSum(nums,target,index+1);
     }
     
     
