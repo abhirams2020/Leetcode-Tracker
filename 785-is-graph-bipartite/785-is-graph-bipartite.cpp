@@ -1,23 +1,28 @@
 class Solution {
 public:
-    vector<int> visited;
+    // colors array to keep track of visited nodes
+    //  0 = not visited
+    // -1 = visited and red color
+    //  1 = visited and blue color
+    vector<int> colors;
     
     // BFS traversal
     bool check(vector<vector<int>>& adj, int node){
         queue<int> q;
         q.push(node);
-        visited[node] = 1;
+        colors[node] = 1;
         while(!q.empty()){
             int curr = q.front();
             q.pop();
-            int parent_color = visited[curr];
-            int child_color = !parent_color;
+            int parent_color = colors[curr];
+            int child_color = -parent_color;
             for(auto i:adj[curr]){
-                if(visited[i]==-1){
+                // if colors unvisited, push to queue and assing color
+                if(colors[i]==0){
                     q.push(i);
-                    visited[i] = child_color;
+                    colors[i] = child_color;
                 }
-                else if(visited[i]==parent_color){
+                else if(colors[i]==parent_color){
                     return false;
                 }
             }
@@ -27,10 +32,11 @@ public:
     
     bool isBipartite(vector<vector<int>>& graph) {
         int n = graph.size();
-        visited.resize(n,-1);
+        colors.resize(n,0);
         
         for(int i=0;i<n;i++){
-            if(visited[i]==-1){
+            // if i was not visited, do bfs on it
+            if(colors[i]==0){
                 if(check(graph,i)==false){
                     return false;
                 }
