@@ -10,7 +10,6 @@ public:
     bool checkBFS(vector<vector<int>>& adj, int node){
         queue<int> q;
         q.push(node);
-        colors[node] = 1;
         while(!q.empty()){
             int curr = q.front();
             q.pop();
@@ -30,6 +29,7 @@ public:
         return true;
     }
     
+    // DFS traversal
     bool checkDFS(vector<vector<int>>& adj, int node){
         int parent_color = colors[node];
         for(auto i:adj[node]){
@@ -54,7 +54,7 @@ public:
             // if i was not visited, do bfs on it
             if(colors[i]==0){
                 colors[i] = 1;
-                if(checkDFS(graph,i)==false){
+                if(checkBFS(graph,i)==false){
                     return false;
                 }
             }
