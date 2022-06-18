@@ -1,6 +1,6 @@
 class Solution {
 public:
-    // mapping of a course to its prerequisites
+    // mapping of a prerequisite to its courses
     unordered_map<int,vector<int>> mp;
     // visited set for checking if node visited again during dfs
     // 0 -> node not visited
