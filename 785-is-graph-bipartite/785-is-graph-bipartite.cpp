@@ -1,9 +1,9 @@
 class Solution {
 public:
-    unordered_map<int,vector<int>> adj;
     vector<int> visited;
     
-    bool check(int node){
+    // BFS traversal
+    bool check(vector<vector<int>>& adj, int node){
         queue<int> q;
         q.push(node);
         visited[node] = 1;
@@ -30,17 +30,8 @@ public:
         visited.resize(n,-1);
         
         for(int i=0;i<n;i++){
-            adj[i] = {};
-        }
-        
-        for(int i=0;i<n;i++){
-            for(auto node:graph[i]){
-                adj[i].push_back(node);
-            }
-        }
-        for(int i=0;i<n;i++){
             if(visited[i]==-1){
-                if(check(i)==false){
+                if(check(graph,i)==false){
                     return false;
                 }
             }
