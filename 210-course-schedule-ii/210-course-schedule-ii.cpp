@@ -9,30 +9,21 @@ public:
     vector<int> visited;
     
     bool isCycle(int curr, vector<int> &ans){
-        // if curr visited again means curr is starting of cycle
-        if(visited[curr]==1){
-            return true;
-        }
-        // if curr element is valid subject and it has visited before
-        if(visited[curr]==2){
-            return false;
-        }
-        
         // backtracking
         // current node is added to visited list
         visited[curr] = 1;
         for(auto i:mp[curr]){
-            if(isCycle(i,ans)){
-                return true;
+            if(visited[i]==0){
+                if(isCycle(i,ans)){
+                    return true;
+                }
             }
-            else {
-                // since no cycles found for i, add to noCycle set
-                visited[i] = 2;
+            else if(visited[i]==1){
+                return true;
             }
         }
         // since no cycles found for curr, visited[curr] = 2
         visited[curr] = 2;
-        
         // since curr is visited and can be completed, add to ans
         // curr added after visiting child nodes to get reverse order
         ans.push_back(curr);
@@ -53,8 +44,10 @@ public:
         }
         // DFS with backtracking to check if the graph contains cycle
         for(int i=0;i<numCourses;i++){
-            if(isCycle(i,ans)){
-                return {};
+            if(visited[i]==0){
+                if(isCycle(i,ans)){
+                    return {};
+                }
             }
         }
         return ans;
