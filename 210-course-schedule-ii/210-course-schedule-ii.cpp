@@ -40,7 +40,7 @@ public:
             mp[i] = {};
         }
         for(auto i:prerequisites){
-            mp[i[0]].push_back(i[1]);
+            mp[i[1]].push_back(i[0]);
         }
         // DFS with backtracking to check if the graph contains cycle
         for(int i=0;i<numCourses;i++){
@@ -50,6 +50,7 @@ public:
                 }
             }
         }
+        reverse(ans.begin(),ans.end());
         return ans;
     }
 };
