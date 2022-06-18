@@ -9,15 +9,6 @@ public:
     vector<int> visited;
     
     bool isCycle(int curr){
-//         // if curr visited again means curr is starting of cycle
-//         if(visited[curr]==1){
-//             return true;
-//         }
-//         // if curr element is valid subject and it has visited before
-//         if(visited[curr]==2){
-//             return false;
-//         }
-        
         // backtracking
         // current node is added to visited list
         visited[curr] = 1;
@@ -26,11 +17,12 @@ public:
                 if(isCycle(i)){
                     return true;
                 }
-                else {
-                    // since no cycles found for i, add to noCycle set
-                    visited[i] = 2;
-                }
+                // else {
+                //     // since no cycles found for i, add to noCycle set
+                //     visited[i] = 2;
+                // }
             }
+            // i has been visited before, cycle exist
             else if(visited[i]==1){
                 return true;
             }
