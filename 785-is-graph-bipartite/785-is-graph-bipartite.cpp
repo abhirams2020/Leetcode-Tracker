@@ -7,7 +7,7 @@ public:
     vector<int> colors;
     
     // BFS traversal
-    bool check(vector<vector<int>>& adj, int node){
+    bool checkBFS(vector<vector<int>>& adj, int node){
         queue<int> q;
         q.push(node);
         colors[node] = 1;
@@ -30,6 +30,22 @@ public:
         return true;
     }
     
+    bool checkDFS(vector<vector<int>>& adj, int node){
+        int parent_color = colors[node];
+        for(auto i:adj[node]){
+            if(colors[i]==0){
+                colors[i] = -parent_color;
+                if(checkDFS(adj,i)==false){
+                    return false;
+                }
+            }
+            else if(colors[i]==parent_color){
+                return false;
+            }
+        }
+        return true;
+    }
+    
     bool isBipartite(vector<vector<int>>& graph) {
         int n = graph.size();
         colors.resize(n,0);
@@ -37,7 +53,8 @@ public:
         for(int i=0;i<n;i++){
             // if i was not visited, do bfs on it
             if(colors[i]==0){
-                if(check(graph,i)==false){
+                colors[i] = 1;
+                if(checkDFS(graph,i)==false){
                     return false;
                 }
             }
