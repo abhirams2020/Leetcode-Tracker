@@ -1,6 +1,6 @@
 class Solution {
 public:
-    // mapping of a course to its prerequisites
+    // mapping of a prerequisites to its course
     unordered_map<int,vector<int>> mp;
     // visited set for checking if node visited again during dfs
     // 0 -> node not visited
@@ -17,10 +17,6 @@ public:
                 if(isCycle(i)){
                     return true;
                 }
-                // else {
-                //     // since no cycles found for i, add to noCycle set
-                //     visited[i] = 2;
-                // }
             }
             // i has been visited before, cycle exist
             else if(visited[i]==1){
@@ -36,12 +32,12 @@ public:
         // initialise all nodes to 0 meaning unvisited
         visited.resize(numCourses,0);
         // total number of courses is numCourses -> from 0 to n-1
-        // assing empty vector to all courses at first, then add prerequisites to the courses
+        // assing empty vector to all courses at first, then add courses to the prerequisites
         for(int i=0;i<numCourses;i++){
             mp[i] = {};
         }
         for(auto i:prerequisites){
-            mp[i[0]].push_back(i[1]);
+            mp[i[1]].push_back(i[0]);
         }
         // DFS with backtracking to check if the graph contains cycle
         for(int i=0;i<numCourses;i++){
