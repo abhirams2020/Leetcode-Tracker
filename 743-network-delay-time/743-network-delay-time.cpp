@@ -20,6 +20,7 @@ public:
             visited[curr] = true;
             pq.pop();
             for(auto [n,wt]:dmap[curr]){
+                // if node is unvisited and curr to n is shortest path found so far, push to pq
                 if(!visited[n] && dist[curr] + wt < dist[n]){
                     dist[n] = dist[curr] + wt;
                     pq.push({dist[n],n});
