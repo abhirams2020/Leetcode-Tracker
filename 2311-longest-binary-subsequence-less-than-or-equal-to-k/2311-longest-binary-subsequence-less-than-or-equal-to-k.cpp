@@ -26,21 +26,21 @@ public:
     
     vector<vector<int>> dp;
     
-    int solve(string &s, int sum, int size, int index){
+    int solve(string &s, int sum, int len, int index){
         if(index==s.length()){
-            return 0;
+            return len;
         }
-        if(dp[size][index]!=-1){
-            return dp[size][index];
+        if(dp[len][index]!=-1){
+            return dp[len][index];
         }
         int val = s[index]-'0';
-        long double curr = val * pow(2,size);
+        long double curr = val * pow(2,len);
         int include = 0, not_include = 0;
         if(curr <= sum){
-            include = 1 + solve(s,sum-curr,size+1,index+1);
+            include = solve(s,sum-curr,len+1,index+1);
         }
-        not_include = solve(s,sum,size,index+1);
-        return dp[size][index] = max(include, not_include);
+        not_include = solve(s,sum,len,index+1);
+        return dp[len][index] = max(include, not_include);
     }
     
     int longestSubsequence(string s, int k) {
