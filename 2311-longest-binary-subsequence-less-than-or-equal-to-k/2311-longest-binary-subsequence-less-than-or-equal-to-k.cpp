@@ -1,21 +1,24 @@
 class Solution {
 public:
-    // BRUTE FORCE APPROACH
+//     // BRUTE FORCE APPROACH
     int solve(string s, int index, int sum){
         int len = 0;
         int p = 0;
         for(int i=index;i<s.length();i++){
-            // cout<<index<<" "<<sum<<endl;
             int val = s[i]-'0';
-            long double curr = val * pow(2,p);
-            if(curr<=sum){
+            long double curr = pow(2,p);
+            if(val==1 && curr<=sum){
                 sum-=curr;
+                len++;
+            }
+            else if(val==0){
                 len++;
             }
             p++;
         }
         return len;
     }
+    
     int longestSubsequence(string s, int sum) {
         reverse(s.begin(),s.end());
         int ans = 0;
