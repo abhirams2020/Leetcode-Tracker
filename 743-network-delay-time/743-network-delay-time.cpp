@@ -11,6 +11,7 @@ public:
     int dijkstra(int size, int k){
         int time = 0;
         vector<int> dist(size+1,1e9);
+        // priority queue elements are {distance from start, node}
         priority_queue<pii,vector<pii>,greater<pii>> pq;
         pq.push({0,k});
         dist[k] = 0;
@@ -19,7 +20,7 @@ public:
             visited[curr] = true;
             pq.pop();
             for(auto [n,wt]:dmap[curr]){
-                if(!visited[n] && dist[n] > dist[curr] + wt){
+                if(!visited[n] && dist[curr] + wt < dist[n]){
                     dist[n] = dist[curr] + wt;
                     pq.push({dist[n],n});
                 }
