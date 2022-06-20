@@ -12,22 +12,25 @@ class Solution{
     long long count = 0;
 
     void merge(long long arr[], int l, int mid, int r) {
-        long long  n1 = mid-l+1; // size of parition 1
-        long long  n2 = r - (mid+1) + 1; // size of parition 2
-        vector<long long > left(n1);
-        vector<long long > right(n2);
-        for(long long  i=l;i<=mid;i++){
+        long long n1 = mid-l+1; // size of parition 1
+        long long n2 = r - (mid+1) + 1; // size of parition 2
+        vector<long long> left(n1);
+        vector<long long> right(n2);
+        for(long long i=l;i<=mid;i++){
             left[i-l] = arr[i];
         }
-        for(long long  i=mid+1;i<=r;i++){
+        for(long long i=mid+1;i<=r;i++){
             right[i-mid-1] = arr[i];
         }
-        long long  p1 = 0, p2 = 0, p = l;
+        long long p1 = 0, p2 = 0, p = l;
         while(p1<n1 && p2<n2){
             if(left[p1]<=right[p2]){
                 arr[p] = left[p1];
                 p1++;
             }
+            // If left ptr element > right ptr element it means there is inversion
+            // Since left and right are sorted, left ptr to end of left, there is inversion.
+            // so add no of elements to right of left ptr including it for each inversion
             else {
                 arr[p] = right[p2];
                 p2++;
@@ -51,7 +54,7 @@ class Solution{
         if(l>=r){
             return;
         }
-        long long  mid = l + (r-l)/2;
+        long long mid = l + (r-l)/2;
         mergesort(arr,l,mid);
         mergesort(arr,mid+1,r);
         merge(arr,l,mid,r);
