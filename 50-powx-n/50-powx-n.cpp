@@ -5,18 +5,17 @@ public:
             return 1;
         }
         double num = myPow(x,n/2);
-        
         if(n%2==0){
-            return num*num;
+            return num * num;
         }
         else {
-            if(n<0){
-                return num*num/x;
+            if(n < 0){
+                return 1/x * num * num;
             }
             else {
-                return num*num*x;
+                return x * num * num;
             }
         }
-        return num;
+        return -1;
     }
 };
